@@ -5,7 +5,7 @@ const milestones = [
   {
     year: '1987',
     title: 'Company Founded',
-    description: 'Hans Chemicals Pvt. LTD was established with a vision to provide quality chemical trading services.'
+    description: 'Hans Chemicals Pvt. Ltd Pvt. LTD was established with a vision to provide quality chemical trading services.'
   },
   {
     year: '1995',
@@ -28,7 +28,7 @@ const milestones = [
     description: 'Launched sustainable sourcing and eco-friendly packaging initiatives.'
   },
   {
-    year: '2024',
+    year: '2025',
     title: 'Present',
     description: 'Continuing to serve industries with reliable chemical solutions and expanding our reach.'
   }
@@ -64,25 +64,24 @@ export default function AboutPage() {
       <div className="container">
         {/* Header */}
         <div className="text-center mb-12">
-          <h1 className="text-4xl font-serif font-bold mb-4">About Hans Chemicals</h1>
+          <h1 className="text-4xl font-serif font-bold mb-4">About Hans Chemicals Pvt. Ltd</h1>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
             For over three decades, we have been a trusted partner in chemical trading, 
             providing quality solutions to industries across India and beyond.
           </p>
         </div>
 
-
         {/* Our Story */}
         <div className="mb-12">
           <h2 className="text-2xl font-serif font-bold text-center mb-8">Our Story</h2>
           <div className="max-w-4xl mx-auto">
-            <p className="text-muted-foreground text-lg leading-relaxed mb-6">
-              Founded in 1987, Hans Chemicals Pvt. LTD began as a small chemical trading company 
+            <p className="text-muted-foreground text-lg leading-relaxed mb-6 text-justify">
+              Founded in 1987, Hans Chemicals Pvt. Ltd began as a small chemical trading company 
               with a simple mission: to provide reliable, high-quality chemicals to industries 
               that depend on them. Over the years, we have grown into a trusted partner for 
               companies across electroplating, metal treatment, feed, water treatment, and ceramics industries.
             </p>
-            <p className="text-muted-foreground text-lg leading-relaxed">
+            <p className="text-muted-foreground text-lg leading-relaxed text-justify">
               Our success is built on three pillars: quality, reliability, and customer service. 
               We understand that our customers&apos; operations depend on the chemicals we supply, 
               which is why we never compromise on quality or delivery timelines. Today, we continue 

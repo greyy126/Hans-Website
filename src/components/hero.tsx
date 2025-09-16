@@ -8,7 +8,7 @@ import { motion } from 'framer-motion';
 
 export function Hero() {
   return (
-    <section className="bg-[#0b132b] relative overflow-hidden min-h-screen flex flex-col justify-center">
+    <section className="bg-[#0b132b] relative overflow-hidden min-h-[70vh] md:min-h-[75vh] flex flex-col justify-center">
       {/* Subtle background pattern */}
         <div 
           className="absolute inset-0 opacity-5"
@@ -22,16 +22,16 @@ export function Hero() {
         <div className="text-center">
           {/* Main Content */}
           <div>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white leading-[1.1] mb-6">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white leading-[1.1] mb-4">
               Reliable Chemical Supply Since 1987
             </h1>
-              <p className="text-lg md:text-xl text-slate-300 max-w-2xl mx-auto leading-relaxed whitespace-nowrap mb-10">
+              <p className="text-lg md:text-xl text-slate-300 max-w-2xl mx-auto leading-relaxed whitespace-nowrap mb-6">
                 We source the right grades, assure quality, and ship safely, on schedule
               </p>
 
               {/* Metrics Row */}
               <motion.div 
-                className="flex justify-center gap-6 mt-8 max-w-4xl mx-auto mb-10"
+                className="flex justify-center gap-6 mt-6 max-w-4xl mx-auto mb-6"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.3 }}
@@ -80,7 +80,7 @@ export function Hero() {
               </motion.div>
               
               <motion.div 
-                className="flex justify-center gap-4 mt-8 flex-wrap"
+                className="flex justify-center gap-4 mt-6 flex-wrap"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.7 }}

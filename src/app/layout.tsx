@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Hans Chemicals — Reliable Chemical Trading Since 1987",
+  title: "Hans Chemicals Pvt. Ltd — Reliable Chemical Trading Since 1987",
   description: "Quality-checked sourcing and on-time delivery for electroplating, metal treatment, feed, and water treatment chemicals.",
 };
 

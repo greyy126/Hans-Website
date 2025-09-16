@@ -59,7 +59,7 @@ const storageCapabilities = [
 
 export default function WarehousingPage() {
   return (
-    <div className="pt-28 md:pt-32 pb-12">
+    <div className="py-12">
       <div className="container">
         {/* Header */}
         <div className="text-center mb-12">

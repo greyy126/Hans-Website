@@ -1,6 +1,6 @@
-# Hans Chemicals Pvt. LTD Website
+# Hans Chemicals Pvt. Ltd Pvt. LTD Website
 
-A modern, responsive website for Hans Chemicals Pvt. LTD - a trusted chemical trading company since 1987.
+A modern, responsive website for Hans Chemicals Pvt. Ltd Pvt. LTD - a trusted chemical trading company since 1987.
 
 ## Features
 
@@ -145,4 +145,4 @@ This project can be deployed on any platform that supports Next.js:
 
 ## License
 
-© 2024 Hans Chemicals Pvt. LTD. All rights reserved.
+© 2024 Hans Chemicals Pvt. Ltd Pvt. LTD. All rights reserved.

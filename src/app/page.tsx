@@ -102,7 +102,7 @@ export default function HomePage() {
       <Hero />
 
       {/* Metrics Section */}
-      <section id="main-content" className="py-16 md:py-24 bg-slate-50">
+      <section id="main-content" className="py-8 md:py-12 bg-gray-50">
         <div className="container mx-auto max-w-screen-xl px-4 md:px-6">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
             <motion.div
@@ -193,7 +193,7 @@ export default function HomePage() {
       </section>
 
       {/* Industries We Serve */}
-      <section className="py-16 md:py-24 bg-slate-50">
+      <section className="py-16 md:py-24 bg-gray-50">
         <div className="container mx-auto max-w-screen-xl px-4 md:px-6">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-semibold text-slate-900 mb-4">Industries We Serve</h2>
@@ -228,24 +228,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Testimonial */}
-      <section className="py-16 md:py-24 bg-white">
-        <div className="container mx-auto max-w-screen-xl px-4 md:px-6">
-          <div className="max-w-4xl mx-auto text-center">
-            <Quote className="h-12 w-12 text-[#1D4ED8] mx-auto mb-6" />
-            <blockquote className="text-xl md:text-2xl text-slate-700 leading-relaxed mb-6">
-              "Hans Chemicals has been our trusted partner for over a decade. Their consistency in quality, 
-              comprehensive documentation, and proactive sampling approach has significantly de-risked our 
-              procurement process. The team's responsiveness across procurement, quality, and sales makes 
-              them stand out in the industry."
-            </blockquote>
-            <div className="text-slate-600">
-              <p className="font-medium">Long-term Client</p>
-              <p className="text-sm">Manufacturing Industry</p>
-            </div>
-          </div>
-        </div>
-      </section>
     </div>
   );
 }

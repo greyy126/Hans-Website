@@ -18,13 +18,13 @@ export function Footer() {
             <div className="flex items-center space-x-3">
               <Image
                 src="/Hans_logo.png"
-                alt="Hans Chemicals"
+                alt="Hans Chemicals Pvt. Ltd"
                 width={80}
                 height={80}
                 className="w-20 h-auto"
               />
               <div>
-                <span className="text-slate-900 font-semibold text-lg">Hans Chemicals</span>
+                <span className="text-slate-900 font-semibold text-lg">Hans Chemicals Pvt. Ltd</span>
                 <p className="text-slate-500 text-sm mt-1">
                   Reliable Chemical Supply Since 1987
                 </p>
@@ -72,7 +72,7 @@ export function Footer() {
         {/* Bottom Row */}
         <div className="border-t border-slate-200 mt-10 pt-6">
           <p className="text-center text-slate-500">
-            © 2025 Hans Chemicals. All rights reserved.
+            © 2025 Hans Chemicals Pvt. Ltd. All rights reserved.
           </p>
         </div>
       </div>
