@@ -102,14 +102,15 @@ export default function HomePage() {
       <Hero />
 
       {/* Metrics Section */}
-      <section id="main-content" className="py-8 md:py-12 bg-gray-50">
+      <section id="main-content" className="py-12 md:py-16 bg-gray-50">
         <div className="container mx-auto max-w-screen-xl px-4 md:px-6">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center items-center">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
               viewport={{ once: true }}
+              className="flex flex-col justify-center h-full"
             >
               <div className="text-5xl font-bold text-blue-600 mb-2">
                 <Counter end={37} />
@@ -122,6 +123,7 @@ export default function HomePage() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
               viewport={{ once: true }}
+              className="flex flex-col justify-center h-full"
             >
               <div className="text-5xl font-bold text-blue-600 mb-2">
                 <Counter end={500} />
@@ -134,6 +136,7 @@ export default function HomePage() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.3 }}
               viewport={{ once: true }}
+              className="flex flex-col justify-center h-full"
             >
               <div className="text-5xl font-bold text-blue-600 mb-2">
                 <Counter end={1000} />
@@ -146,6 +149,7 @@ export default function HomePage() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.4 }}
               viewport={{ once: true }}
+              className="flex flex-col justify-center h-full"
             >
               <div className="text-5xl font-bold text-blue-600 mb-2">
                 <Counter end={50} />
