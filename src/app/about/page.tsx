@@ -1,11 +1,12 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Target, Users, Award, Globe } from 'lucide-react';
+import Image from 'next/image';
 
 const milestones = [
   {
     year: '1987',
     title: 'Company Founded',
-    description: 'Hans Chemicals Pvt. Ltd Pvt. LTD was established with a vision to provide quality chemical trading services.'
+    description: 'Hans Chemicals Pvt. Ltd was established with a vision to provide quality chemical trading services.'
   },
   {
     year: '1995',
@@ -57,79 +58,121 @@ const values = [
   }
 ];
 
-
 export default function AboutPage() {
   return (
-    <div className="pt-28 md:pt-32 pb-12">
-      <div className="container">
-        {/* Header */}
-        <div className="text-center mb-12">
-          <h1 className="text-4xl font-serif font-bold mb-4">About Hans Chemicals Pvt. Ltd</h1>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            For over three decades, we have been a trusted partner in chemical trading, 
-            providing quality solutions to industries across India and beyond.
-          </p>
-        </div>
+    <div className="pt-28 md:pt-32 pb-12 bg-gradient-to-b from-gray-50 to-white min-h-screen">
+      <div className="container max-w-7xl mx-auto px-6">
+        {/* Two-Column Layout */}
+        <div className="relative">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
+            
+            {/* Left Column - Image */}
+            <div className="order-1 lg:order-1">
+              <div className="relative rounded-2xl overflow-hidden shadow-xl">
+                <Image
+                  src="/about2.jpg"
+                  alt="Hans Chemicals Pvt. Ltd - About Us"
+                  width={600}
+                  height={700}
+                  className="w-full h-auto object-cover"
+                  priority
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+              </div>
+            </div>
 
-        {/* Our Story */}
-        <div className="mb-12">
-          <h2 className="text-2xl font-serif font-bold text-center mb-8">Our Story</h2>
-          <div className="max-w-4xl mx-auto">
-            <p className="text-muted-foreground text-lg leading-relaxed mb-6 text-justify">
-              Founded in 1987, Hans Chemicals Pvt. Ltd began as a small chemical trading company 
-              with a simple mission: to provide reliable, high-quality chemicals to industries 
-              that depend on them. Over the years, we have grown into a trusted partner for 
-              companies across electroplating, metal treatment, feed, water treatment, and ceramics industries.
-            </p>
-            <p className="text-muted-foreground text-lg leading-relaxed text-justify">
-              Our success is built on three pillars: quality, reliability, and customer service. 
-              We understand that our customers&apos; operations depend on the chemicals we supply, 
-              which is why we never compromise on quality or delivery timelines. Today, we continue 
-              to expand our product portfolio and supplier network while maintaining the same 
-              commitment to excellence that has defined us for over three decades.
-            </p>
-          </div>
-        </div>
+            {/* Right Column - Text Content */}
+            <div className="order-2 lg:order-2 space-y-8">
+              {/* Heading with Accent */}
+              <div>
+                <h1 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
+                  About Hans Chemicals Pvt. Ltd
+                </h1>
+                <div className="w-24 h-1 bg-slate-900 mb-6 rounded-full"></div>
+                
+                {/* Mission Quote */}
+                <blockquote className="text-lg md:text-xl font-light italic text-slate-600 leading-relaxed">
+                  "For over three decades, we have been a trusted partner in chemical trading, 
+                  providing quality solutions to industries across India and beyond."
+                </blockquote>
+              </div>
 
-        {/* Values */}
-        <div className="mb-12">
-          <h2 className="text-2xl font-serif font-bold text-center mb-8">Our Values</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {values.map((value, index) => (
-              <Card key={index} className="text-center">
-                <CardHeader>
-                  <div className="mx-auto w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mb-4">
-                    <value.icon className="h-6 w-6 text-primary" />
-                  </div>
-                  <CardTitle className="text-lg">{value.title}</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <CardDescription className="text-sm">
-                    {value.description}
-                  </CardDescription>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-
-        {/* Timeline */}
-        <div className="bg-muted/50 rounded-lg p-8">
-          <h2 className="text-2xl font-serif font-bold text-center mb-8">Our Journey</h2>
-          <div className="space-y-8">
-            {milestones.map((milestone, index) => (
-              <div key={index} className="flex items-start space-x-4">
-                <div className="flex-shrink-0">
-                  <div className="w-16 h-16 bg-primary text-primary-foreground rounded-full flex items-center justify-center text-sm font-bold">
-                    {milestone.year}
-                  </div>
+              {/* Our Story Section */}
+              <div className="space-y-6">
+                {/* Subheading */}
+                <div>
+                  <h2 className="text-2xl font-serif font-bold text-slate-900">Our Story</h2>
                 </div>
-                <div className="flex-1">
-                  <h3 className="text-lg font-semibold mb-2">{milestone.title}</h3>
-                  <p className="text-muted-foreground">{milestone.description}</p>
+                
+                {/* Story Content with Drop Cap */}
+                <div className="bg-white rounded-2xl shadow-lg p-8 md:p-10 max-w-2xl">
+                  <div className="prose prose-lg max-w-none">
+                    <p className="text-slate-700 leading-relaxed mb-6 text-justify">
+                      <span className="float-left text-6xl font-bold text-slate-600 leading-none pr-2 pt-1">F</span>
+                      ounded in 1987, Hans Chemicals Pvt. Ltd began as a small chemical trading company 
+                      with a simple mission: <span className="font-semibold text-slate-900 border-b-2 border-slate-300 pb-1">to provide reliable, high-quality chemicals to industries 
+                      that depend on them</span>. Over the years, we have grown into a trusted partner for 
+                      companies across electroplating, metal treatment, feed, water treatment, and ceramics industries.
+                    </p>
+                    <p className="text-slate-700 leading-relaxed text-justify">
+                      Our success is built on three pillars: <span className="font-bold text-slate-900 bg-slate-100 px-2 py-1 rounded">quality, reliability, and customer service</span>. 
+                      We understand that our customers&apos; operations depend on the chemicals we supply, 
+                      which is why we never compromise on quality or delivery timelines. Today, we continue 
+                      to expand our product portfolio and supplier network while maintaining the same 
+                      commitment to excellence that has defined us for over three decades.
+                    </p>
+                  </div>
                 </div>
               </div>
-            ))}
+            </div>
+          </div>
+          
+          {/* Vertical Divider - Desktop Only */}
+          <div className="hidden lg:block absolute left-1/2 top-0 bottom-0 w-px bg-slate-200 transform -translate-x-1/2"></div>
+        </div>
+
+        {/* Spacing for Values Section */}
+        <div className="mt-20">
+          {/* Values */}
+          <div className="mb-12">
+            <h2 className="text-2xl font-serif font-bold text-center mb-8">Our Values</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {values.map((value, index) => (
+                <Card key={index} className="text-center">
+                  <CardHeader>
+                    <div className="mx-auto w-12 h-12 bg-slate-900 rounded-full flex items-center justify-center mb-4">
+                      <value.icon className="h-6 w-6 text-white" />
+                    </div>
+                    <CardTitle className="text-lg">{value.title}</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <CardDescription className="text-sm">
+                      {value.description}
+                    </CardDescription>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+
+          {/* Timeline */}
+          <div className="bg-muted/50 rounded-lg p-8">
+            <h2 className="text-2xl font-serif font-bold text-center mb-8">Our Journey</h2>
+            <div className="space-y-8">
+              {milestones.map((milestone, index) => (
+                <div key={index} className="flex items-start space-x-4">
+                  <div className="flex-shrink-0">
+                    <div className="w-16 h-16 bg-slate-900 text-white rounded-full flex items-center justify-center text-sm font-bold">
+                      {milestone.year}
+                    </div>
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="text-lg font-semibold mb-2">{milestone.title}</h3>
+                    <p className="text-muted-foreground">{milestone.description}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>

@@ -20,7 +20,7 @@ export function Navbar() {
 
   return (
     <div className="fixed top-4 left-1/2 -translate-x-1/2 z-50 w-full max-w-6xl px-8">
-      <div className="bg-white/90 backdrop-blur-md rounded-full shadow-lg border border-slate-200/70 px-8 py-3 transition-all duration-300">
+      <div className="bg-white/70 backdrop-blur-md rounded-full shadow-lg border border-slate-200/50 px-8 py-3 transition-all duration-300">
         <div className="flex items-center justify-between">
           {/* Logo */}
           <Link href="/" className="flex items-center space-x-3">
@@ -44,7 +44,7 @@ export function Navbar() {
                   href={item.href}
                   className={`text-base font-medium transition-colors ${
                     isActive
-                      ? 'text-blue-600 font-semibold'
+                      ? 'text-slate-900 font-semibold'
                       : 'text-slate-700 hover:text-slate-900'
                   }`}
                 >
@@ -81,7 +81,7 @@ export function Navbar() {
         {/* Mobile Navigation */}
         {mobileMenuOpen && (
           <div className="md:hidden mt-4">
-            <div className="bg-white/90 backdrop-blur-md rounded-2xl shadow-lg border border-slate-200/70 px-6 py-4 space-y-3">
+            <div className="bg-white/70 backdrop-blur-md rounded-2xl shadow-lg border border-slate-200/50 px-6 py-4 space-y-3">
               {navigation.map((item) => {
                 const isActive = pathname === item.href;
                 return (
@@ -90,7 +90,7 @@ export function Navbar() {
                     href={item.href}
                     className={`block px-3 py-2 text-base font-medium rounded-lg transition-colors ${
                       isActive
-                        ? 'text-blue-600 bg-blue-50 font-semibold'
+                        ? 'text-slate-900 bg-slate-100 font-semibold'
                         : 'text-slate-700 hover:text-slate-900 hover:bg-slate-50'
                     }`}
                     onClick={() => setMobileMenuOpen(false)}

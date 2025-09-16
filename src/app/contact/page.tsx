@@ -59,7 +59,7 @@ export default function ContactPage() {
   };
 
   return (
-    <div className="py-20">
+    <div className="pt-28 md:pt-32 pb-20">
       <div className="max-w-6xl mx-auto px-6">
         {/* Header */}
         <div className="text-center mb-12">

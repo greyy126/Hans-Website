@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useCallback } from 'react';
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Button } from '@/components/ui/button';
@@ -19,6 +19,14 @@ export default function ProductsPage() {
       return matchesSearch && matchesCategory;
     });
   }, [searchTerm, selectedCategory]);
+
+  const handleSearchChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchTerm(e.target.value);
+  }, []);
+
+  const handleCategoryChange = useCallback((value: string) => {
+    setSelectedCategory(value);
+  }, []);
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -78,11 +86,11 @@ export default function ProductsPage() {
               <Input
                 placeholder="Search products..."
                 value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
+                onChange={handleSearchChange}
                 className="pl-10 bg-white border-slate-200"
               />
             </div>
-            <Select value={selectedCategory} onValueChange={setSelectedCategory}>
+            <Select value={selectedCategory} onValueChange={handleCategoryChange}>
               <SelectTrigger className="w-full md:w-48 bg-white border-slate-200">
                 <SelectValue placeholder="Select category" />
               </SelectTrigger>
@@ -103,59 +111,54 @@ export default function ProductsPage() {
 
           {/* Product Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.6 }}
-              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 col-span-full"
-            >
-              {filteredProducts.map((product, index) => (
-                <motion.div
-                  key={product.id}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  whileHover={{ scale: 1.02 }}
-                  transition={{ 
-                    duration: 0.5, 
-                    delay: index * 0.1,
-                    ease: "easeOut"
-                  }}
-                  viewport={{ once: true, margin: "-50px" }}
-                  className="bg-white rounded-xl border border-slate-200 p-6 shadow-sm hover:shadow-lg hover:border-blue-200 transition-all duration-300"
-                >
-                  <div className="space-y-4">
-                    <div>
+            {filteredProducts.map((product, index) => (
+              <motion.div
+                key={product.id}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                whileHover={{ scale: 1.02 }}
+                transition={{ 
+                  duration: 0.3, 
+                  delay: Math.min(index * 0.05, 0.5),
+                  ease: "easeOut"
+                }}
+                viewport={{ once: true, margin: "-100px" }}
+                className="bg-sky-50 rounded-xl border border-sky-200 p-6 shadow-sm hover:shadow-lg hover:border-sky-300 transition-all duration-200 flex flex-col h-full"
+              >
+                  <div className="flex flex-col h-full">
+                    <div className="flex-grow">
                       <h3 className="text-lg font-semibold text-slate-900 mb-2">
                         {product.name}
                       </h3>
-                      <span className="inline-block px-2 py-1 text-xs bg-blue-100 text-blue-800 rounded-full">
+                      <span className="inline-block px-2 py-1 text-xs bg-sky-100 text-sky-800 rounded-full mb-4">
                         {product.category}
                       </span>
                     </div>
                     
-                    <div className="space-y-2">
+                    <div className="space-y-2 mb-6 flex-grow">
                       <h4 className="text-sm font-medium text-slate-600">Applications</h4>
                       <p className="text-sm text-slate-500">Coming soon...</p>
                     </div>
                     
-                    <Button 
-                      asChild 
-                      className="w-full bg-blue-600 hover:bg-blue-700 text-white"
-                    >
-                      <a 
-                        href={product.pdfPath} 
-                        target="_blank" 
-                        rel="noopener noreferrer"
-                        className="flex items-center justify-center gap-2"
+                    <div className="mt-auto">
+                      <Button 
+                        asChild 
+                        className="w-full bg-slate-900 hover:bg-slate-800 text-white"
                       >
-                        <Download className="h-4 w-4" />
-                        Download TDS
-                      </a>
-                    </Button>
+                        <a 
+                          href={product.pdfPath} 
+                          target="_blank" 
+                          rel="noopener noreferrer"
+                          className="flex items-center justify-center gap-2"
+                        >
+                          <Download className="h-4 w-4" />
+                          Download TDS
+                        </a>
+                      </Button>
+                    </div>
                   </div>
-                </motion.div>
-              ))}
-            </motion.div>
+              </motion.div>
+            ))}
           </div>
 
           {/* Empty State */}

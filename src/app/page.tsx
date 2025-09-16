@@ -112,10 +112,10 @@ export default function HomePage() {
               viewport={{ once: true }}
               className="flex flex-col justify-center h-full"
             >
-              <div className="text-5xl font-bold text-blue-600 mb-2">
+              <div className="text-5xl font-bold text-slate-900 mb-2">
                 <Counter end={37} />
               </div>
-              <p className="text-slate-600">Years of Experience</p>
+              <p className="text-slate-700">Years of Experience</p>
             </motion.div>
             
             <motion.div
@@ -125,10 +125,10 @@ export default function HomePage() {
               viewport={{ once: true }}
               className="flex flex-col justify-center h-full"
             >
-              <div className="text-5xl font-bold text-blue-600 mb-2">
+              <div className="text-5xl font-bold text-slate-900 mb-2">
                 <Counter end={500} />
               </div>
-              <p className="text-slate-600">Products Supplied</p>
+              <p className="text-slate-700">Products Supplied</p>
             </motion.div>
             
             <motion.div
@@ -138,10 +138,10 @@ export default function HomePage() {
               viewport={{ once: true }}
               className="flex flex-col justify-center h-full"
             >
-              <div className="text-5xl font-bold text-blue-600 mb-2">
+              <div className="text-5xl font-bold text-slate-900 mb-2">
                 <Counter end={1000} />
               </div>
-              <p className="text-slate-600">Happy Customers</p>
+              <p className="text-slate-700">Happy Customers</p>
             </motion.div>
             
             <motion.div
@@ -151,10 +151,10 @@ export default function HomePage() {
               viewport={{ once: true }}
               className="flex flex-col justify-center h-full"
             >
-              <div className="text-5xl font-bold text-blue-600 mb-2">
+              <div className="text-5xl font-bold text-slate-900 mb-2">
                 <Counter end={50} />
               </div>
-              <p className="text-slate-600">Industries Served</p>
+              <p className="text-slate-700">Industries Served</p>
             </motion.div>
           </div>
         </div>
@@ -182,7 +182,7 @@ export default function HomePage() {
                 className="rounded-2xl bg-white shadow-md p-8 hover:shadow-lg transition-all duration-300"
               >
                 <div className="space-y-4">
-                  <div className="w-12 h-12 bg-blue-600 rounded-xl flex items-center justify-center">
+                  <div className="w-12 h-12 bg-slate-900 rounded-xl flex items-center justify-center">
                     <card.icon className="h-6 w-6 text-white" />
                   </div>
                   <div>
@@ -215,11 +215,11 @@ export default function HomePage() {
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 viewport={{ once: true }}
                 whileHover={{ scale: 1.02 }}
-                className="rounded-2xl bg-white border border-slate-200 p-6 hover:border-blue-300 hover:shadow-md transition-all duration-300 group"
+                className="rounded-2xl bg-white border border-slate-200 p-6 hover:border-slate-900 hover:shadow-md transition-all duration-300 group"
               >
                 <div className="flex items-start space-x-4">
-                  <div className="w-12 h-12 bg-slate-100 rounded-xl flex items-center justify-center group-hover:bg-blue-100 transition-colors">
-                    <industry.icon className="h-6 w-6 text-slate-600 group-hover:text-blue-600 transition-colors" />
+                  <div className="w-12 h-12 bg-slate-100 rounded-xl flex items-center justify-center group-hover:bg-slate-900 transition-colors">
+                    <industry.icon className="h-6 w-6 text-slate-600 group-hover:text-white transition-colors" />
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-slate-900 mb-2">{industry.title}</h3>
