@@ -160,8 +160,76 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Workflow Section */}
+      {/* Our Directors Section */}
       <section className="py-16 md:py-24 bg-white">
+        <div className="container mx-auto max-w-screen-xl px-4 md:px-6">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-semibold text-center mb-4">Our Directors</h2>
+            <div className="w-24 h-1 bg-slate-900 mx-auto rounded-full"></div>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+            {/* Director 1 */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              viewport={{ once: true }}
+              whileHover={{ y: -4 }}
+              className="bg-white rounded-2xl shadow-lg p-8 hover:shadow-xl transition-all duration-300 border border-slate-100"
+            >
+              <div className="text-center">
+                {/* Director Portrait */}
+                <div className="w-40 h-40 bg-slate-100 rounded-full mx-auto mb-6 flex items-center justify-center overflow-hidden">
+                  <div className="w-36 h-36 bg-slate-200 rounded-full flex items-center justify-center">
+                    <span className="text-3xl font-bold text-slate-400">KS</span>
+                  </div>
+                </div>
+                
+                {/* Director Info */}
+                <h3 className="text-xl font-semibold text-slate-900 mb-2">Kaushik Champaklal Shah</h3>
+                <p className="text-slate-600 mb-6">Director</p>
+                
+                {/* Contact Button */}
+                <Button asChild className="bg-slate-900 text-white hover:bg-slate-800 px-6 py-2 rounded-full text-sm">
+                  <a href="mailto:kaushikcshah@gmail.com">Contact</a>
+                </Button>
+              </div>
+            </motion.div>
+
+            {/* Director 2 */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              viewport={{ once: true }}
+              whileHover={{ y: -4 }}
+              className="bg-white rounded-2xl shadow-lg p-8 hover:shadow-xl transition-all duration-300 border border-slate-100"
+            >
+              <div className="text-center">
+                {/* Director Portrait */}
+                <div className="w-40 h-40 bg-slate-100 rounded-full mx-auto mb-6 flex items-center justify-center overflow-hidden">
+                  <div className="w-36 h-36 bg-slate-200 rounded-full flex items-center justify-center">
+                    <span className="text-3xl font-bold text-slate-400">HS</span>
+                  </div>
+                </div>
+                
+                {/* Director Info */}
+                <h3 className="text-xl font-semibold text-slate-900 mb-2">Himanshu Champaklal Shah</h3>
+                <p className="text-slate-600 mb-6">Director</p>
+                
+                {/* Contact Button */}
+                <Button asChild className="bg-slate-900 text-white hover:bg-slate-800 px-6 py-2 rounded-full text-sm">
+                  <a href="mailto:placeholder@hanschemicals.com">Contact</a>
+                </Button>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* Workflow Section */}
+      <section className="py-16 md:py-24 bg-gray-50">
         <div className="container mx-auto max-w-screen-xl px-4 md:px-6">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-semibold text-center mb-4">Our Workflow</h2>
@@ -197,7 +265,7 @@ export default function HomePage() {
       </section>
 
       {/* Industries We Serve */}
-      <section className="py-16 md:py-24 bg-gray-50">
+      <section className="py-16 md:py-24 bg-white">
         <div className="container mx-auto max-w-screen-xl px-4 md:px-6">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-semibold text-slate-900 mb-4">Industries We Serve</h2>

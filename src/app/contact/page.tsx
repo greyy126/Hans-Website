@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Mail, Phone, MapPin, Send } from 'lucide-react';
 import { useState } from 'react';
+import emailjs from '@emailjs/browser';
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -23,15 +24,28 @@ export default function ContactPage() {
     setSubmitStatus('idle');
 
     try {
-      const response = await fetch('/api/send-quote', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      });
+      // Initialize EmailJS with public key
+      emailjs.init(process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY || '');
 
-      if (response.ok) {
+      // Prepare template parameters
+      const templateParams = {
+        from_name: formData.name,
+        from_email: formData.email,
+        phone: formData.phone,
+        company: formData.company,
+        subject: formData.subject,
+        message: formData.message,
+        to_email: 'hanschemicalspl@gmail.com'
+      };
+
+      // Send email using EmailJS
+      const response = await emailjs.send(
+        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID || '',
+        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID || '',
+        templateParams
+      );
+
+      if (response.status === 200) {
         setSubmitStatus('success');
         setFormData({
           name: '',
@@ -45,6 +59,7 @@ export default function ContactPage() {
         setSubmitStatus('error');
       }
     } catch (error) {
+      console.error('EmailJS Error:', error);
       setSubmitStatus('error');
     } finally {
       setIsSubmitting(false);
@@ -163,7 +178,7 @@ export default function ContactPage() {
                   value={formData.message}
                   onChange={handleChange}
                   placeholder="Tell us how we can help you..."
-                  className="w-full px-3 py-2 border border-slate-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                  className="w-full px-3 py-2 border border-slate-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-slate-900 focus:border-slate-900"
                 />
               </div>
 
@@ -182,7 +197,7 @@ export default function ContactPage() {
               <Button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full bg-blue-600 hover:bg-blue-700 text-white rounded-lg px-6 py-3"
+                className="w-full bg-slate-900 hover:bg-slate-800 text-white rounded-lg px-6 py-3"
               >
                 {isSubmitting ? (
                   'Sending...'
@@ -200,12 +215,12 @@ export default function ContactPage() {
           <div className="space-y-6">
             {/* Email */}
             <div className="rounded-xl border border-slate-200 bg-white p-6 shadow-sm flex items-start gap-3">
-              <Mail className="h-6 w-6 text-blue-600 mt-1 flex-shrink-0" />
+              <Mail className="h-6 w-6 text-slate-900 mt-1 flex-shrink-0" />
               <div>
                 <h3 className="font-semibold text-slate-900 mb-1">Email</h3>
                 <a
                   href="mailto:hanschemicalspl@gmail.com"
-                  className="text-blue-600 hover:text-blue-700 transition-colors"
+                  className="text-slate-900 hover:text-slate-700 transition-colors"
                 >
                   hanschemicalspl@gmail.com
                 </a>
@@ -214,19 +229,19 @@ export default function ContactPage() {
 
             {/* Phone Numbers */}
             <div className="rounded-xl border border-slate-200 bg-white p-6 shadow-sm flex items-start gap-3">
-              <Phone className="h-6 w-6 text-blue-600 mt-1 flex-shrink-0" />
+              <Phone className="h-6 w-6 text-slate-900 mt-1 flex-shrink-0" />
               <div>
                 <h3 className="font-semibold text-slate-900 mb-2">Phone</h3>
                 <div className="space-y-1">
                   <a
                     href="tel:+919022115122"
-                    className="block text-blue-600 hover:text-blue-700 transition-colors"
+                    className="block text-slate-900 hover:text-slate-700 transition-colors"
                   >
                     +91 90221 15122
                   </a>
                   <a
                     href="tel:+919322255128"
-                    className="block text-blue-600 hover:text-blue-700 transition-colors"
+                    className="block text-slate-900 hover:text-slate-700 transition-colors"
                   >
                     +91 93222 55128
                   </a>
@@ -236,7 +251,7 @@ export default function ContactPage() {
 
             {/* Address */}
             <div className="rounded-xl border border-slate-200 bg-white p-6 shadow-sm flex items-start gap-3">
-              <MapPin className="h-6 w-6 text-blue-600 mt-1 flex-shrink-0" />
+              <MapPin className="h-6 w-6 text-slate-900 mt-1 flex-shrink-0" />
               <div>
                 <h3 className="font-semibold text-slate-900 mb-1">Address</h3>
                 <p className="text-slate-600">Mumbai, India</p>

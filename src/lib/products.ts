@@ -68,3 +68,4 @@ export const products: Product[] = [
 
 // Get unique categories
 export const categories = ['All', ...Array.from(new Set(products.map(p => p.category)))];
+
