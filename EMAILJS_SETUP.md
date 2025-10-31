@@ -20,7 +20,8 @@ This guide will help you set up EmailJS to send form submissions from the contac
 
 1. Go to "Email Templates" in the dashboard
 2. Click "Create New Template"
-3. Use this template content:
+3. Set the recipient email to: **hanschemicalspl@gmail.com** (in the "To Email" field)
+4. Use this template content:
 
 ```
 Subject: New Contact Form Submission - {{subject}}
@@ -37,7 +38,17 @@ Message:
 This message was sent from the Hans Chemicals website contact form.
 ```
 
-4. Save the template and note down the **Template ID** (e.g., `template_xxxxxxx`)
+**Important**: Make sure the "To Email" field in your template is set to `hanschemicalspl@gmail.com` or use the variable `{{to_email}}`.
+
+5. **Configure File Attachments** (IMPORTANT):
+   - Click on the **"Attachments"** tab in your template editor
+   - Click **"Add Attachment"**
+   - Select **"Form File Attachment"** (not Variable Attachment)
+   - In the **"Parameter Name"** field, enter: `attachment` (this must match the file input name in the form)
+   - Save the attachment configuration
+   - **Note**: Without this step, attachments will not be included in emails
+
+6. Save the template and note down the **Template ID** (e.g., `template_xxxxxxx`)
 
 ## Step 4: Get Public Key
 
@@ -65,13 +76,16 @@ NEXT_PUBLIC_EMAILJS_PUBLIC_KEY=your_actual_public_key
 ## Template Variables Used
 
 The form sends these variables to EmailJS:
-- `{{from_name}}` - User's name
-- `{{from_email}}` - User's email
-- `{{phone}}` - User's phone number
-- `{{company}}` - User's company
-- `{{subject}}` - Message subject
-- `{{message}}` - User's message
-- `{{to_email}}` - Always set to hanschemicalspl@gmail.com
+- `{{from_name}}` - User's name (required)
+- `{{from_email}}` - User's email address (required)
+- `{{phone}}` - User's phone number (or "Not provided" if empty)
+- `{{company}}` - User's company name (or "Not provided" if empty)
+- `{{subject}}` - Message subject (required)
+- `{{message}}` - Message content (required)
+- `{{to_email}}` - Always set to "hanschemicalspl@gmail.com"
+- `{{attachment_name}}` - Attachment filename (or "No attachment" if none)
+- `{{attachment_content}}` - Base64 encoded attachment (empty string if no attachment)
+- `{{attachment_type}}` - MIME type of attachment (e.g., "application/pdf", empty if none)
 
 ## Troubleshooting
 
@@ -79,3 +93,5 @@ The form sends these variables to EmailJS:
 - Check the browser console for any error messages
 - Verify your EmailJS service is active
 - Ensure the email template uses the correct variable names
+- **If attachments are not included**: Make sure you configured the attachment in the template's "Attachments" tab with parameter name "attachment"
+- **File size limit**: EmailJS free tier limits total payload to 50KB (including form data + attachment). Keep attachments small (<30KB recommended)

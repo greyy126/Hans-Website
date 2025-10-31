@@ -30,8 +30,9 @@ export default function QualityPage() {
       <div className="container">
         {/* Header */}
         <div className="text-center mb-12">
-          <h1 className="text-4xl font-serif font-bold mb-4">Quality Assurance</h1>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+          <h1 className="text-4xl font-serif font-bold mb-4 text-slate-900">Quality Assurance</h1>
+          <div className="w-24 h-1 bg-gradient-to-r from-blue-500 to-blue-700 mx-auto mb-4 rounded-full"></div>
+          <p className="text-xl text-slate-600 max-w-3xl mx-auto">
             Our commitment to quality ensures that every chemical we supply meets the highest standards 
             and regulatory requirements. We maintain strict quality control processes from source to delivery.
           </p>
@@ -39,51 +40,67 @@ export default function QualityPage() {
 
         {/* Quality Features */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
-          {qualityFeatures.map((feature, index) => (
-            <Card key={index} className="text-center">
-              <CardHeader>
-                <div className="mx-auto w-12 h-12 bg-slate-900 rounded-full flex items-center justify-center mb-4">
-                  <feature.icon className="h-6 w-6 text-white" />
-                </div>
-                <CardTitle className="text-lg">{feature.title}</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <CardDescription className="text-sm">
-                  {feature.description}
-                </CardDescription>
-              </CardContent>
-            </Card>
-          ))}
+          {qualityFeatures.map((feature, index) => {
+            // Use different blue shades for visual hierarchy
+            const blueVariants = [
+              'bg-blue-900', // Navy for Source Verification
+              'bg-blue-700', // Dark blue for Quality Testing
+              'bg-blue-800', // Medium navy for Documentation
+              'bg-blue-900'  // Navy for Certification
+            ];
+            const hoverVariants = [
+              'hover:bg-blue-800',
+              'hover:bg-blue-600',
+              'hover:bg-blue-700',
+              'hover:bg-blue-800'
+            ];
+            
+            return (
+              <Card key={index} className="text-center hover:shadow-lg transition-shadow duration-300 border border-blue-100">
+                <CardHeader>
+                  <div className={`mx-auto w-12 h-12 ${blueVariants[index]} ${hoverVariants[index]} rounded-full flex items-center justify-center mb-4 transition-colors duration-300`}>
+                    <feature.icon className="h-6 w-6 text-white" />
+                  </div>
+                  <CardTitle className="text-lg text-slate-900">{feature.title}</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <CardDescription className="text-sm text-slate-600">
+                    {feature.description}
+                  </CardDescription>
+                </CardContent>
+              </Card>
+            );
+          })}
         </div>
 
         {/* Quality Process */}
-        <div className="bg-muted/50 rounded-lg p-8">
-          <h2 className="text-2xl font-serif font-bold text-center mb-8">Our Quality Process</h2>
+        <div className="bg-blue-50 rounded-lg p-8 border border-blue-100">
+          <h2 className="text-2xl font-serif font-bold text-center mb-8 text-slate-900">Our Quality Process</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="text-center">
-              <div className="w-16 h-16 bg-slate-900 text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4">
+              <div className="w-16 h-16 bg-blue-900 hover:bg-blue-800 text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4 transition-colors duration-300 shadow-md">
                 1
               </div>
-              <h3 className="text-lg font-semibold mb-2">Supplier Assessment</h3>
-              <p className="text-muted-foreground">
+              <h3 className="text-lg font-semibold mb-2 text-slate-900">Supplier Assessment</h3>
+              <p className="text-slate-600">
                 Comprehensive evaluation of supplier capabilities, certifications, and quality systems.
               </p>
             </div>
             <div className="text-center">
-              <div className="w-16 h-16 bg-slate-900 text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4">
+              <div className="w-16 h-16 bg-blue-700 hover:bg-blue-600 text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4 transition-colors duration-300 shadow-md">
                 2
               </div>
-              <h3 className="text-lg font-semibold mb-2">Testing & Verification</h3>
-              <p className="text-muted-foreground">
+              <h3 className="text-lg font-semibold mb-2 text-slate-900">Testing & Verification</h3>
+              <p className="text-slate-600">
                 Rigorous testing of samples to ensure chemical composition and purity meet specifications.
               </p>
             </div>
             <div className="text-center">
-              <div className="w-16 h-16 bg-slate-900 text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4">
+              <div className="w-16 h-16 bg-blue-800 hover:bg-blue-700 text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4 transition-colors duration-300 shadow-md">
                 3
               </div>
-              <h3 className="text-lg font-semibold mb-2">Documentation & Delivery</h3>
-              <p className="text-muted-foreground">
+              <h3 className="text-lg font-semibold mb-2 text-slate-900">Documentation & Delivery</h3>
+              <p className="text-slate-600">
                 Complete documentation package and secure packaging for safe transportation.
               </p>
             </div>

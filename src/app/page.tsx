@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Hero } from '@/components/hero';
@@ -14,7 +15,11 @@ import {
   Palette,
   Droplets,
   Cog,
-  Handshake
+  Handshake,
+  Paintbrush,
+  Pill,
+  Phone,
+  Mail
 } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
@@ -67,8 +72,93 @@ const industries = [
     icon: Handshake,
     title: 'Chemical Trading',
     description: 'Bulk supply for trading companies'
+  },
+  {
+    icon: Paintbrush,
+    title: 'Paint',
+    description: 'Specialized chemicals for paint and coating industries'
+  },
+  {
+    icon: Pill,
+    title: 'Pharmaceutical',
+    description: 'High-purity chemicals for pharmaceutical applications'
   }
 ];
+
+// Director Card Component
+function DirectorCard({ 
+  delay, 
+  name, 
+  title, 
+  phone, 
+  email, 
+  photoPath, 
+  initials 
+}: { 
+  delay: number; 
+  name: string; 
+  title: string; 
+  phone: string; 
+  email: string; 
+  photoPath: string | null; 
+  initials: string;
+}) {
+  const [imageError, setImageError] = useState(false);
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6, delay }}
+      viewport={{ once: true }}
+      whileHover={{ y: -4 }}
+      className={`relative bg-gradient-to-br from-slate-50 to-white rounded-3xl shadow-md hover:shadow-xl transition-all duration-300 overflow-visible group ${photoPath && !imageError ? 'pt-20' : 'pt-8'} pb-8 px-8 border border-slate-200/50`}
+    >
+      {/* Minimal gradient border outline */}
+      <div className="absolute inset-0 rounded-3xl bg-gradient-to-r from-blue-500/10 via-slate-300/10 to-slate-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
+      
+      <div className="text-center relative z-10">
+        {/* Director Portrait - Overlapping top edge */}
+        {photoPath && !imageError && (
+          <div className="absolute -top-16 left-1/2 transform -translate-x-1/2 w-32 h-32 rounded-full overflow-hidden shadow-lg ring-4 ring-white bg-white">
+            <Image
+              src={photoPath}
+              alt={name}
+              width={128}
+              height={128}
+              className="w-full h-full object-cover"
+              onError={() => setImageError(true)}
+            />
+          </div>
+        )}
+        
+        {/* Director Info */}
+        <h3 className={`text-2xl font-bold text-slate-900 mb-1 ${photoPath && !imageError ? 'mt-8' : ''}`}>{name}</h3>
+        <p className="text-sm text-slate-500 mb-6">{title}</p>
+        
+        {/* Contact Info */}
+        <div className="space-y-3 pt-2">
+          {phone && (
+            <div className="flex items-center justify-center gap-2 text-slate-700 text-sm">
+              <Phone className="h-4 w-4 text-slate-500 flex-shrink-0" />
+              <a href={`tel:${phone.replace(/\s/g, '')}`} className="hover:text-slate-900 transition-colors">
+                {phone}
+              </a>
+            </div>
+          )}
+          {email && (
+            <div className="flex items-center justify-center gap-2 text-slate-700 text-sm">
+              <Mail className="h-4 w-4 text-slate-500 flex-shrink-0" />
+              <a href={`mailto:${email}`} className="hover:text-slate-900 transition-colors break-all">
+                {email}
+              </a>
+            </div>
+          )}
+        </div>
+      </div>
+    </motion.div>
+  );
+}
 
 // Counter animation component
 function Counter({ end, duration = 2000 }: { end: number; duration?: number }) {
@@ -164,66 +254,34 @@ export default function HomePage() {
       <section className="py-16 md:py-24 bg-white">
         <div className="container mx-auto max-w-screen-xl px-4 md:px-6">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-semibold text-center mb-4">Our Directors</h2>
-            <div className="w-24 h-1 bg-slate-900 mx-auto rounded-full"></div>
+            <h2 className="text-4xl font-semibold text-center mb-3">Our Directors</h2>
+            <p className="text-slate-600 text-lg max-w-2xl mx-auto">
+              Meet the leadership guiding HANS CHEMICALS with integrity and expertise.
+            </p>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            {/* Director 1 */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              viewport={{ once: true }}
-              whileHover={{ y: -4 }}
-              className="bg-white rounded-2xl shadow-lg p-8 hover:shadow-xl transition-all duration-300 border border-slate-100"
-            >
-              <div className="text-center">
-                {/* Director Portrait */}
-                <div className="w-40 h-40 bg-slate-100 rounded-full mx-auto mb-6 flex items-center justify-center overflow-hidden">
-                  <div className="w-36 h-36 bg-slate-200 rounded-full flex items-center justify-center">
-                    <span className="text-3xl font-bold text-slate-400">KS</span>
-                  </div>
-                </div>
-                
-                {/* Director Info */}
-                <h3 className="text-xl font-semibold text-slate-900 mb-2">Kaushik Champaklal Shah</h3>
-                <p className="text-slate-600 mb-6">Director</p>
-                
-                {/* Contact Button */}
-                <Button asChild className="bg-slate-900 text-white hover:bg-slate-800 px-6 py-2 rounded-full text-sm">
-                  <a href="mailto:kaushikcshah@gmail.com">Contact</a>
-                </Button>
-              </div>
-            </motion.div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-5xl mx-auto">
+            {/* Director 1 - Kaushik */}
+            <DirectorCard
+              delay={0.1}
+              name="Kaushik Champaklal Shah"
+              title="Director"
+              phone="+91 9022115122"
+              email="kaushikcshah@ymail.com"
+              photoPath="/kaushik.jpg"
+              initials="KS"
+            />
 
-            {/* Director 2 */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              viewport={{ once: true }}
-              whileHover={{ y: -4 }}
-              className="bg-white rounded-2xl shadow-lg p-8 hover:shadow-xl transition-all duration-300 border border-slate-100"
-            >
-              <div className="text-center">
-                {/* Director Portrait */}
-                <div className="w-40 h-40 bg-slate-100 rounded-full mx-auto mb-6 flex items-center justify-center overflow-hidden">
-                  <div className="w-36 h-36 bg-slate-200 rounded-full flex items-center justify-center">
-                    <span className="text-3xl font-bold text-slate-400">HS</span>
-                  </div>
-                </div>
-                
-                {/* Director Info */}
-                <h3 className="text-xl font-semibold text-slate-900 mb-2">Himanshu Champaklal Shah</h3>
-                <p className="text-slate-600 mb-6">Director</p>
-                
-                {/* Contact Button */}
-                <Button asChild className="bg-slate-900 text-white hover:bg-slate-800 px-6 py-2 rounded-full text-sm">
-                  <a href="mailto:placeholder@hanschemicals.com">Contact</a>
-                </Button>
-              </div>
-            </motion.div>
+            {/* Director 2 - Himanshu */}
+            <DirectorCard
+              delay={0.2}
+              name="Himanshu Champaklal Shah"
+              title="Director"
+              phone="+91 9322255128"
+              email="himanshucshah@yahoo.com"
+              photoPath={null}
+              initials="HS"
+            />
           </div>
         </div>
       </section>

@@ -31,7 +31,7 @@ export function Navbar() {
               height={40}
               className="h-10 w-10 object-contain"
             />
-            <span className="text-xl font-bold text-slate-900">Hans Chemicals Pvt. Ltd</span>
+            <span className="text-xl font-bold text-slate-900">HANS CHEMICALS</span>
           </Link>
 
           {/* Desktop Navigation */}

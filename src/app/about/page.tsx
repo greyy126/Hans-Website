@@ -5,8 +5,8 @@ import Image from 'next/image';
 const milestones = [
   {
     year: '1987',
-    title: 'Company Founded',
-    description: 'Hans Chemicals Pvt. Ltd was established with a vision to provide quality chemical trading services.'
+    title: 'Founded',
+    description: 'Established with a vision to provide quality chemical trading services.'
   },
   {
     year: '1995',
@@ -71,7 +71,7 @@ export default function AboutPage() {
               <div className="relative rounded-2xl overflow-hidden shadow-xl">
                 <Image
                   src="/about2.jpg"
-                  alt="Hans Chemicals Pvt. Ltd - About Us"
+                  alt="HANS CHEMICALS - About Us"
                   width={600}
                   height={700}
                   className="w-full h-auto object-cover"
@@ -86,7 +86,7 @@ export default function AboutPage() {
               {/* Heading with Accent */}
               <div>
                 <h1 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
-                  About Hans Chemicals Pvt. Ltd
+                  About HANS CHEMICALS
                 </h1>
                 <div className="w-24 h-1 bg-slate-900 mb-6 rounded-full"></div>
                 
@@ -109,7 +109,7 @@ export default function AboutPage() {
                   <div className="prose prose-lg max-w-none">
                     <p className="text-slate-700 leading-relaxed mb-6 text-justify">
                       <span className="float-left text-6xl font-bold text-slate-600 leading-none pr-2 pt-1">F</span>
-                      ounded in 1987, Hans Chemicals Pvt. Ltd began as a small chemical trading company 
+                      ounded in 1987, we began as a small chemical trading company 
                       with a simple mission: <span className="font-semibold text-slate-900 border-b-2 border-slate-300 pb-1">to provide reliable, high-quality chemicals to industries 
                       that depend on them</span>. Over the years, we have grown into a trusted partner for 
                       companies across electroplating, metal treatment, feed, water treatment, and ceramics industries.

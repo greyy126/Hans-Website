@@ -54,7 +54,13 @@ const formatProductName = (fileName: string): string => {
   return fileName
     .replace('.pdf', '')
     .split(' ')
-    .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+    .map(word => {
+      // Handle words in parentheses - preserve uppercase inside parentheses
+      if (word.startsWith('(') && word.endsWith(')')) {
+        return word.toUpperCase();
+      }
+      return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+    })
     .join(' ');
 };
 
@@ -186,7 +192,7 @@ const applicationsByName: Record<string, string[]> = {
   'Hansmol 10 Powder': ['Electroplating', 'Textile'],
   'Hansmol Bx Paste': ['Textile', 'Dyes'],
   'Hansmol Bx Powder': ['Textile', 'Dyes'],
-  'Hansmol Dn (Spl) Powder': ['Pesticides', 'Fertilizers'],
+  'Hansmol Dn (SPL) Powder': ['Pesticides', 'Fertilizers'],
   'Hansmol Dn Powder': ['Pesticides', 'Fertilizers'],
   'Hansmol Fbp1 Powder': ['Pesticides', 'Fertilizers'],
   'Hansmol Fz 1 Liquid': ['Textile', 'Fertilizers'],
