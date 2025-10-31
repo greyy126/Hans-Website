@@ -25,7 +25,8 @@ const categories = [
   'Zinc Compounds',
   'Copper Compounds', 
   'Ferrous Compounds',
-  'Hansmol Range',
+  'Dispersing Agent and Wetting Agent',
+  'Sodium Compounds',
   'Other Compounds'
 ];
 
@@ -40,7 +41,9 @@ const categorizeProduct = (fileName: string): string => {
   } else if (name.includes('ferrous') || name.includes('magnesium')) {
     return 'Ferrous Compounds';
   } else if (name.includes('hansmol')) {
-    return 'Hansmol Range';
+    return 'Dispersing Agent and Wetting Agent';
+  } else if (name.includes('sodium')) {
+    return 'Sodium Compounds';
   } else {
     return 'Other Compounds';
   }
@@ -66,7 +69,7 @@ const generateProductId = (fileName: string): string => {
 };
 
 // Product data with SEO keywords
-const products: Product[] = [
+const products: { fileName: string; keywords: string }[] = [
   {
     fileName: 'Benzoic Acid - Tech.pdf',
     keywords: 'Benzoic Acid, Benzenecarboxylic Acid, Carboxybenzene, E210, Dracylic Acid, BZoH, CAS No.65-85-0, EC NO. 200-618-2, C7H6O2, C6H5COOH'
@@ -171,15 +174,48 @@ const products: Product[] = [
     fileName: 'Zinc Stearate.pdf',
     keywords: 'Zinc Stearate, Zinc Soap CAS No. 557-05-1, Zn( C18H35O2)2'
   }
-].map(product => ({
-  id: generateProductId(product.fileName),
-  name: formatProductName(product.fileName),
-  fileName: product.fileName,
-  pdfPath: `/products/${product.fileName}`,
-  category: categorizeProduct(product.fileName),
-  keywords: product.keywords,
-  applications: [] // Placeholder for future use
-}));
+];
+
+// Applications mapping keyed by formatted product name
+const applicationsByName: Record<string, string[]> = {
+  'Benzoic Acid - Tech': ['Preservatives in Perfume', 'Food', 'Resin', 'Paints', 'Plasticizers', 'Benzoic Derivatives'],
+  'Cupric Chloride Dihydrate Pure': ['Textile mordant', 'Petroleum sweetener', 'Wood preservative', 'Water cleaner'],
+  'Cupric Oxide - Black': ['Fertilizer', 'Copper Salts', 'Pigment', 'Wood Preservatives'],
+  'Cuprous Oxide - Red': ['Paint', 'Semiconductor', 'Photocell', 'Pigment', 'Pharma'],
+  'Ferrous Sulphate - Heptahydrate': ['Pharma', 'Fertilizers', 'Ferrous derivatives', 'Jewellery', 'Reagents'],
+  'Hansmol 10 Powder': ['Electroplating', 'Textile'],
+  'Hansmol Bx Paste': ['Textile', 'Dyes'],
+  'Hansmol Bx Powder': ['Textile', 'Dyes'],
+  'Hansmol Dn (Spl) Powder': ['Pesticides', 'Fertilizers'],
+  'Hansmol Dn Powder': ['Pesticides', 'Fertilizers'],
+  'Hansmol Fbp1 Powder': ['Pesticides', 'Fertilizers'],
+  'Hansmol Fz 1 Liquid': ['Textile', 'Fertilizers'],
+  'Hansmol Gl Powder': ['Dyes', 'Textile', 'Fertilizers', 'Pesticides', 'Pigments', 'Construction'],
+  'Hansmol Gls Powder': ['Dyes', 'Textile', 'Fertilizers', 'Pesticides', 'Pigments', 'Construction'],
+  'Hansmol Nks Powder': ['Dyes', 'Textile', 'Fertilizers', 'Pesticides', 'Pigments', 'Construction'],
+  'Magnessium Sulphate Tds': ['Reagents', 'Fertilizers', 'Pharma'],
+  'Sodium Allyl Sulphonate': ['Electroplating'],
+  'Sodium Formaldehyde Bi Sulphite': ['Electroplating', 'Water treatment'],
+  'Zinc Dust Std 7 Ever Zinc': ['Paint', 'Pharma', 'Mechanical Plating'],
+  'Zinc Dust Super Extra Ever Zinc': ['Paint', 'Pharma', 'Mechanical Plating'],
+  'Zinc Dust Super Fine Ever Zinc': ['Paint', 'Pharma', 'Mechanical Plating'],
+  'Zinc Oxide - Goldseal': ['Paint', 'Pharma', 'Fertilizers', 'Rubber', 'Zinc Salts'],
+  'Zinc Oxide - Whiteseal': ['Paint', 'Pharma', 'Fertilizers', 'Rubber', 'Zinc Salts'],
+  'Zinc Phospsphate': ['Paint', 'Reagents']
+};
+
+const productsWithApplications: Product[] = products.map(product => {
+  const name = formatProductName(product.fileName);
+  return {
+    id: generateProductId(product.fileName),
+    name,
+    fileName: product.fileName,
+    pdfPath: `/products/${product.fileName}`,
+    category: categorizeProduct(product.fileName),
+    keywords: product.keywords,
+    applications: applicationsByName[name] ?? []
+  };
+});
 
 export default function ProductsPage() {
   const [searchTerm, setSearchTerm] = useState('');
@@ -187,7 +223,7 @@ export default function ProductsPage() {
 
   // Filter products based on search term and category
   const filteredProducts = useMemo(() => {
-    return products.filter(product => {
+    return productsWithApplications.filter(product => {
       const searchLower = searchTerm.toLowerCase();
       const matchesSearch = product.name.toLowerCase().includes(searchLower) || 
                            product.keywords.toLowerCase().includes(searchLower);
@@ -312,13 +348,13 @@ export default function ProductsPage() {
         {/* Results Count */}
         <div className="mb-6">
           <p className="text-slate-600 text-center">
-            Showing {filteredProducts.length} of {products.length} products
+            Showing {filteredProducts.length} of {productsWithApplications.length} products
             {selectedCategory !== 'All' && ` in ${selectedCategory}`}
           </p>
         </div>
 
         {/* Products Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredProducts.map((product, index) => (
             <motion.div
               key={product.id}
@@ -331,23 +367,36 @@ export default function ProductsPage() {
                 ease: "easeOut"
               }}
               viewport={{ once: true, margin: "-50px" }}
-              className="bg-sky-50 rounded-xl border border-sky-200 p-6 shadow-sm hover:shadow-lg hover:border-sky-300 transition-all duration-150 flex flex-col h-full"
+              className="bg-sky-50 rounded-xl border border-sky-200 p-8 shadow-sm hover:shadow-lg hover:border-sky-300 transition-all duration-150 flex flex-col h-full"
             >
               <div className="flex flex-col h-full">
-                {/* Product Name - Fixed Height */}
-                <div className="mb-4 min-h-[80px]">
-                  <h3 className="text-lg font-medium text-slate-900 mb-2">
+                {/* Product Name - Fixed Height for Alignment */}
+                <div className="mb-6 h-24 flex flex-col justify-between">
+                  <h3 className="text-xl font-semibold text-slate-900 mb-3 leading-tight">
                     {product.name}
                   </h3>
-                  <span className="inline-block px-3 py-1 text-xs bg-sky-100 text-sky-800 rounded-full">
+                  <span className="inline-block px-4 py-2 text-sm font-semibold bg-gradient-to-r from-sky-400 to-blue-500 text-white rounded-full w-fit shadow-md">
                     {product.category}
                   </span>
                 </div>
                 
-                {/* Applications Section - Fixed Height */}
-                <div className="space-y-2 mb-6 flex-grow min-h-[60px]">
-                  <h4 className="text-sm font-medium text-slate-600">Applications</h4>
-                  <p className="text-sm text-slate-500">Coming soon...</p>
+                {/* Applications Section - Fixed Height for Alignment */}
+                <div className="mb-6 flex-grow min-h-[120px] flex flex-col">
+                  <h4 className="text-sm font-semibold text-slate-600 mb-3">Applications</h4>
+                  {product.applications.length > 0 ? (
+                    <div className="flex flex-wrap gap-2">
+                      {product.applications.map((application, idx) => (
+                        <span
+                          key={idx}
+                          className="inline-block px-3 py-1.5 text-xs font-medium bg-blue-50 text-blue-700 rounded-full border border-blue-100 shadow-sm"
+                        >
+                          {application}
+                        </span>
+                      ))}
+                    </div>
+                  ) : (
+                    <p className="text-sm text-slate-500">—</p>
+                  )}
                 </div>
                 
                 {/* Download Button */}

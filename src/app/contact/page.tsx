@@ -2,7 +2,7 @@
 
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Mail, Phone, MapPin, Send } from 'lucide-react';
+import { Mail, Phone, MapPin, Send, Paperclip, X } from 'lucide-react';
 import { useState } from 'react';
 import emailjs from '@emailjs/browser';
 
@@ -15,6 +15,7 @@ export default function ContactPage() {
     subject: '',
     message: ''
   });
+  const [attachment, setAttachment] = useState<File | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
 
@@ -27,6 +28,24 @@ export default function ContactPage() {
       // Initialize EmailJS with public key
       emailjs.init(process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY || '');
 
+      // Convert file to base64 if attachment exists
+      let attachmentBase64 = '';
+      let attachmentName = '';
+      if (attachment) {
+        attachmentName = attachment.name;
+        attachmentBase64 = await new Promise<string>((resolve, reject) => {
+          const reader = new FileReader();
+          reader.onload = () => {
+            const result = reader.result as string;
+            // Remove data URL prefix (e.g., "data:application/pdf;base64,")
+            const base64 = result.split(',')[1] || result;
+            resolve(base64);
+          };
+          reader.onerror = reject;
+          reader.readAsDataURL(attachment);
+        });
+      }
+
       // Prepare template parameters
       const templateParams = {
         from_name: formData.name,
@@ -35,7 +54,10 @@ export default function ContactPage() {
         company: formData.company,
         subject: formData.subject,
         message: formData.message,
-        to_email: 'hanschemicalspl@gmail.com'
+        to_email: 'hanschemicalspl@gmail.com',
+        attachment_name: attachmentName,
+        attachment_content: attachmentBase64,
+        attachment_type: attachment ? attachment.type : ''
       };
 
       // Send email using EmailJS
@@ -55,6 +77,7 @@ export default function ContactPage() {
           subject: '',
           message: ''
         });
+        setAttachment(null);
       } else {
         setSubmitStatus('error');
       }
@@ -71,6 +94,27 @@ export default function ContactPage() {
       ...formData,
       [e.target.name]: e.target.value
     });
+  };
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0] || null;
+    if (file) {
+      // Check file size (limit to 5MB)
+      if (file.size > 5 * 1024 * 1024) {
+        alert('File size must be less than 5MB');
+        e.target.value = '';
+        return;
+      }
+      setAttachment(file);
+    }
+  };
+
+  const handleRemoveAttachment = () => {
+    setAttachment(null);
+    const fileInput = document.getElementById('attachment') as HTMLInputElement;
+    if (fileInput) {
+      fileInput.value = '';
+    }
   };
 
   return (
@@ -180,6 +224,52 @@ export default function ContactPage() {
                   placeholder="Tell us how we can help you..."
                   className="w-full px-3 py-2 border border-slate-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-slate-900 focus:border-slate-900"
                 />
+              </div>
+
+              <div>
+                <label htmlFor="attachment" className="block text-sm font-medium text-slate-700 mb-2">
+                  Attach Requirements (Optional)
+                </label>
+                <div className="space-y-2">
+                  <label
+                    htmlFor="attachment"
+                    className="flex items-center justify-center w-full px-4 py-3 border-2 border-dashed border-slate-300 rounded-md cursor-pointer hover:border-slate-400 hover:bg-slate-50 transition-colors"
+                  >
+                    <Paperclip className="h-5 w-5 text-slate-600 mr-2" />
+                    <span className="text-sm text-slate-600">
+                      {attachment ? attachment.name : 'Choose file or drag and drop'}
+                    </span>
+                    <input
+                      id="attachment"
+                      type="file"
+                      onChange={handleFileChange}
+                      className="hidden"
+                      accept=".pdf,.doc,.docx,.xls,.xlsx,.txt,.jpg,.jpeg,.png"
+                    />
+                  </label>
+                  {attachment && (
+                    <div className="flex items-center justify-between px-3 py-2 bg-slate-50 border border-slate-200 rounded-md">
+                      <div className="flex items-center gap-2">
+                        <Paperclip className="h-4 w-4 text-slate-600" />
+                        <span className="text-sm text-slate-700">{attachment.name}</span>
+                        <span className="text-xs text-slate-500">
+                          ({(attachment.size / 1024).toFixed(1)} KB)
+                        </span>
+                      </div>
+                      <button
+                        type="button"
+                        onClick={handleRemoveAttachment}
+                        className="text-slate-500 hover:text-slate-700 transition-colors"
+                        aria-label="Remove attachment"
+                      >
+                        <X className="h-4 w-4" />
+                      </button>
+                    </div>
+                  )}
+                  <p className="text-xs text-slate-500">
+                    Accepted formats: PDF, DOC, DOCX, XLS, XLSX, TXT, JPG, PNG (Max 5MB)
+                  </p>
+                </div>
               </div>
 
               {submitStatus === 'success' && (
