@@ -98,8 +98,8 @@ export function Hero() {
                   whileHover={{ scale: 1.08, y: -2 }}
                   whileTap={{ scale: 0.95 }}
                 >
-                  <Button asChild className="bg-slate-900 text-white px-8 py-3 rounded-xl text-lg font-semibold shadow-xl transition-all duration-300 hover:bg-slate-800 hover:-translate-y-1 hover:shadow-2xl w-full sm:w-auto">
-                    <Link href="/products" className="flex items-center gap-2">
+                  <Button asChild className="bg-slate-900 text-white px-8 py-3 rounded-xl text-lg font-semibold shadow-xl transition-all duration-300 hover:bg-slate-800 hover:-translate-y-1 hover:shadow-2xl w-full sm:w-[200px]">
+                    <Link href="/products" className="flex items-center justify-center gap-2">
                       View Products
                       <ArrowRight className="h-4 w-4" />
                     </Link>
@@ -113,8 +113,8 @@ export function Hero() {
                   whileHover={{ scale: 1.08, y: -2 }}
                   whileTap={{ scale: 0.95 }}
                 >
-                  <Button asChild className="bg-white text-slate-900 border-2 border-slate-800 px-8 py-3 rounded-xl text-lg font-semibold shadow-xl transition-all duration-300 hover:bg-slate-100 hover:text-slate-900 hover:border-slate-900 hover:-translate-y-1 hover:shadow-2xl w-full sm:w-auto">
-                    <Link href="/contact">Request a Quote</Link>
+                  <Button asChild className="bg-white text-slate-900 border-2 border-slate-800 px-8 py-3 rounded-xl text-lg font-semibold shadow-xl transition-all duration-300 hover:bg-slate-100 hover:text-slate-900 hover:border-slate-900 hover:-translate-y-1 hover:shadow-2xl w-full sm:w-[200px]">
+                    <Link href="/contact" className="flex items-center justify-center">Request a Quote</Link>
                   </Button>
                 </motion.div>
               </motion.div>

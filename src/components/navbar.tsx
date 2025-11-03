@@ -20,29 +20,29 @@ export function Navbar() {
 
   return (
     <div className="fixed top-4 left-1/2 -translate-x-1/2 z-50 w-full max-w-6xl px-8">
-      <div className="bg-white/70 backdrop-blur-md rounded-full shadow-lg border border-slate-200/50 px-8 py-3 transition-all duration-300">
+      <div className="bg-white/70 backdrop-blur-md rounded-full shadow-lg border border-slate-200/50 px-6 py-2 transition-all duration-300">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <Link href="/" className="flex items-center space-x-3">
+          <Link href="/" className="flex items-center space-x-2.5">
             <Image
               src="/Hans_logo-update.png"
               alt="Hans Chemicals Pvt. Ltd"
-              width={40}
-              height={40}
-              className="h-10 w-10 object-contain"
+              width={32}
+              height={32}
+              className="h-8 w-8 object-contain"
             />
-            <span className="text-xl font-bold text-slate-900">HANS CHEMICALS</span>
+            <span className="text-lg font-bold text-slate-900">HANS CHEMICALS</span>
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-8">
+          <nav className="hidden md:flex items-center space-x-6">
             {navigation.map((item) => {
               const isActive = pathname === item.href;
               return (
                 <Link
                   key={item.name}
                   href={item.href}
-                  className={`text-base font-medium transition-colors ${
+                  className={`text-sm font-medium transition-colors ${
                     isActive
                       ? 'text-slate-900 font-semibold'
                       : 'text-slate-700 hover:text-slate-900'
@@ -56,7 +56,7 @@ export function Navbar() {
 
           {/* CTA Button */}
           <div className="hidden md:flex items-center">
-            <Button asChild className="bg-slate-900 text-white hover:bg-slate-800 px-6 py-2 rounded-full">
+            <Button asChild className="bg-slate-900 text-white hover:bg-slate-800 px-5 py-1.5 rounded-full text-sm">
               <Link href="/contact" aria-label="Request a quote">Request a Quote</Link>
             </Button>
           </div>

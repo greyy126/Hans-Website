@@ -185,7 +185,8 @@ const products: { fileName: string; keywords: string }[] = [
 // Applications mapping keyed by formatted product name
 const applicationsByName: Record<string, string[]> = {
   'Benzoic Acid - Tech': ['Preservatives in Perfume', 'Food', 'Resin', 'Paints', 'Plasticizers', 'Benzoic Derivatives'],
-  'Cupric Chloride Dihydrate Pure': ['Textile mordant', 'Petroleum sweetener', 'Wood preservative', 'Water cleaner'],
+  'Cupric Chloride Dihydrate Pure': ['Catalyst', 'Dyeing & Printing', 'Indelible & Laundry Ink'],
+  'Cupric Chloride Dihydrate Tech': ['Catalyst', 'Dyeing & Printing', 'Indelible & Laundry Ink'],
   'Cupric Oxide - Black': ['Fertilizer', 'Copper Salts', 'Pigment', 'Wood Preservatives'],
   'Cuprous Oxide - Red': ['Paint', 'Semiconductor', 'Photocell', 'Pigment', 'Pharma'],
   'Ferrous Sulphate - Heptahydrate': ['Pharma', 'Fertilizers', 'Ferrous derivatives', 'Jewellery', 'Reagents'],
@@ -207,7 +208,8 @@ const applicationsByName: Record<string, string[]> = {
   'Zinc Dust Super Fine Ever Zinc': ['Paint', 'Pharma', 'Mechanical Plating'],
   'Zinc Oxide - Goldseal': ['Paint', 'Pharma', 'Fertilizers', 'Rubber', 'Zinc Salts'],
   'Zinc Oxide - Whiteseal': ['Paint', 'Pharma', 'Fertilizers', 'Rubber', 'Zinc Salts'],
-  'Zinc Phospsphate': ['Paint', 'Reagents']
+  'Zinc Phospsphate': ['Paint', 'Reagents'],
+  'Zinc Stearate': ['Lubricant', 'Release Agents', 'Plastic', 'Rubber', 'Pharma']
 };
 
 const productsWithApplications: Product[] = products.map(product => {

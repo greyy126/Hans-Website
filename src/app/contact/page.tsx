@@ -277,12 +277,13 @@ export default function ContactPage() {
 
               <div>
                 <label htmlFor="phone" className="block text-sm font-medium text-slate-700 mb-2">
-                  Phone
+                  Phone *
                 </label>
                 <Input
                   id="phone"
                   name="phone"
                   type="tel"
+                  required
                   value={formData.phone}
                   onChange={handleChange}
                   placeholder="+91 98765 43210"
@@ -307,13 +308,12 @@ export default function ContactPage() {
 
               <div>
                 <label htmlFor="subject" className="block text-sm font-medium text-slate-700 mb-2">
-                  Subject *
+                  Subject (Optional)
                 </label>
                 <Input
                   id="subject"
                   name="subject"
                   type="text"
-                  required
                   value={formData.subject}
                   onChange={handleChange}
                   placeholder="What is this about?"
