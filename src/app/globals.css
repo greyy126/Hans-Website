@@ -134,10 +134,10 @@
     @apply font-serif;
   }
   h1 {
-    @apply text-5xl md:text-6xl;
+    @apply text-3xl sm:text-4xl md:text-5xl leading-tight;
   }
   h2 {
-    @apply text-3xl md:text-4xl;
+    @apply text-2xl sm:text-3xl md:text-4xl leading-tight;
   }
   p {
     @apply text-base md:text-lg leading-7 md:leading-8 text-slate-600;

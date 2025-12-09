@@ -9,7 +9,7 @@ import { motion } from 'framer-motion';
 export function Hero() {
   return (
     <section 
-      className="relative overflow-hidden min-h-[75vh] flex flex-col justify-center bg-cover bg-center bg-no-repeat py-12 sm:py-16 md:py-20"
+      className="relative overflow-hidden min-h-[70vh] flex flex-col justify-center bg-cover bg-center bg-no-repeat pt-20 pb-10 sm:pt-24 sm:pb-14 md:py-20"
       style={{
         backgroundImage: `url("/homepage1.jpg")`,
         backgroundSize: 'cover',
@@ -28,65 +28,75 @@ export function Hero() {
         <div className="text-center">
           {/* Main Content */}
           <div>
-            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold tracking-tight text-white leading-tight sm:leading-[1.1] mb-3 sm:mb-4 drop-shadow-2xl px-2">
-              Reliable Chemical Supply Since 1987
+            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold tracking-tight text-white leading-snug sm:leading-[1.1] mb-2 sm:mb-4 drop-shadow-2xl px-2">
+              Reliable Chemical Supply
+              <span className="block">Since 1987</span>
             </h1>
-              <p className="text-sm sm:text-base md:text-lg lg:text-xl text-white max-w-2xl mx-auto leading-relaxed mb-4 sm:mb-6 drop-shadow-xl font-medium px-2">
+              <p className="text-sm sm:text-base md:text-lg lg:text-xl text-white max-w-2xl mx-auto leading-relaxed mb-4 sm:mb-5 drop-shadow-xl font-medium px-2">
                 We source the right grades, assure quality, and ship safely, on schedule
               </p>
 
               {/* Metrics Row */}
               <motion.div 
-                className="flex justify-center gap-6 mt-6 max-w-4xl mx-auto mb-6"
-                initial={{ opacity: 0, y: 20 }}
+                className="grid grid-cols-2 sm:flex sm:flex-row sm:flex-wrap justify-center gap-2.5 sm:gap-4 mt-3 sm:mt-6 max-w-4xl mx-auto mb-3 sm:mb-6"
+                initial={{ opacity: 1, y: 0 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.3 }}
               >
                 <motion.div 
-                  className="bg-white/20 backdrop-blur-md rounded-xl px-6 py-4 flex items-center gap-3 shadow-lg hover:-translate-y-1 hover:border-white/50 transition border border-white/30"
-                  initial={{ opacity: 0, y: 20 }}
+                  className="bg-white/20 backdrop-blur-md rounded-xl px-3.5 sm:px-5 py-2.5 flex items-center gap-2 shadow-lg hover:-translate-y-1 hover:border-white/50 transition border border-white/30 w-full sm:w-auto sm:flex-1"
+                  initial={{ opacity: 1, y: 0 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 0.4 }}
                   whileHover={{ scale: 1.02 }}
                 >
-                  <ShieldCheck className="h-6 w-6 text-white drop-shadow-md" />
+                  <ShieldCheck className="h-5 w-5 text-white drop-shadow-md" />
                   <div>
-                    <div className="text-sm text-white/90 font-medium drop-shadow-md">Quality Assured</div>
-                    <div className="text-xl font-bold text-white drop-shadow-lg">98%</div>
+                    <div className="text-[11px] sm:text-sm text-white/90 font-medium drop-shadow-md">Quality Assured</div>
+                    <div className="text-sm sm:text-xl font-bold text-white drop-shadow-lg">98%</div>
                   </div>
                 </motion.div>
                 
                 <motion.div 
-                  className="bg-white/20 backdrop-blur-md rounded-xl px-6 py-4 flex items-center gap-3 shadow-lg hover:-translate-y-1 hover:border-white/50 transition border border-white/30"
-                  initial={{ opacity: 0, y: 20 }}
+                  className="bg-white/20 backdrop-blur-md rounded-xl px-3.5 sm:px-5 py-2.5 flex items-center gap-2 shadow-lg hover:-translate-y-1 hover:border-white/50 transition border border-white/30 w-full sm:w-auto sm:flex-1"
+                  initial={{ opacity: 1, y: 0 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 0.5 }}
                   whileHover={{ scale: 1.02 }}
                 >
-                  <Truck className="h-6 w-6 text-white drop-shadow-md" />
+                  <Truck className="h-5 w-5 text-white drop-shadow-md" />
                   <div>
-                    <div className="text-sm text-white/90 font-medium drop-shadow-md">On-time Delivery</div>
-                    <div className="text-xl font-bold text-white drop-shadow-lg">99%</div>
+                    <div className="text-[11px] sm:text-sm text-white/90 font-medium drop-shadow-md">On-time Delivery</div>
+                    <div className="text-sm sm:text-xl font-bold text-white drop-shadow-lg">99%</div>
                   </div>
                 </motion.div>
                 
                 <motion.div 
-                  className="bg-white/20 backdrop-blur-md rounded-xl px-6 py-4 flex items-center gap-3 shadow-lg hover:-translate-y-1 hover:border-white/50 transition border border-white/30"
-                  initial={{ opacity: 0, y: 20 }}
+                  className="bg-white/20 backdrop-blur-md rounded-xl px-3.5 sm:px-5 py-2.5 flex items-center gap-2 shadow-lg hover:-translate-y-1 hover:border-white/50 transition border border-white/30 w-full sm:w-auto sm:flex-1"
+                  initial={{ opacity: 1, y: 0 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: 0.6 }}
                   whileHover={{ scale: 1.02 }}
                 >
-                  <Smile className="h-6 w-6 text-white drop-shadow-md" />
+                  <Smile className="h-5 w-5 text-white drop-shadow-md" />
                   <div>
-                    <div className="text-sm text-white/90 font-medium drop-shadow-md">Client Satisfaction</div>
-                    <div className="text-xl font-bold text-white drop-shadow-lg">97%</div>
+                    <div className="text-[11px] sm:text-sm text-white/90 font-medium drop-shadow-md">Client Satisfaction</div>
+                    <div className="text-sm sm:text-xl font-bold text-white drop-shadow-lg">97%</div>
+                  </div>
+                </motion.div>
+
+                {/* Compact fourth stat for mobile to balance grid */}
+                <motion.div 
+                  className="bg-white/15 backdrop-blur-md rounded-xl px-3.5 sm:px-5 py-2.5 flex items-center gap-2 shadow-lg border border-white/20 w-full sm:hidden"
+                  initial={{ opacity: 1, y: 0 }}
+                  animate={{ opacity: 1, y: 0 }}
+                >
+                  <ShieldCheck className="h-5 w-5 text-white drop-shadow-md" />
+                  <div>
+                    <div className="text-[11px] text-white/90 font-medium drop-shadow-md">Since 1987</div>
+                    <div className="text-sm font-bold text-white drop-shadow-lg">Trusted partners</div>
                   </div>
                 </motion.div>
               </motion.div>
               
               <motion.div 
-                className="flex flex-col sm:flex-row justify-center gap-3 sm:gap-4 mt-4 sm:mt-6 px-2"
+                className="flex flex-col sm:flex-row justify-center gap-3 sm:gap-4 mt-2 sm:mt-5 px-2"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.7 }}
@@ -99,7 +109,7 @@ export function Hero() {
                   whileTap={{ scale: 0.95 }}
                   className="w-full sm:w-auto"
                 >
-                  <Button asChild className="bg-slate-900 text-white px-6 sm:px-8 py-2.5 sm:py-3 rounded-xl text-base sm:text-lg font-semibold shadow-xl transition-all duration-300 hover:bg-slate-800 hover:-translate-y-1 hover:shadow-2xl w-full sm:w-[200px]">
+                  <Button asChild className="bg-slate-900 text-white px-5 sm:px-7 py-2 sm:py-2.5 rounded-lg sm:rounded-xl text-sm sm:text-base font-semibold shadow-xl transition-all duration-300 hover:bg-slate-800 hover:-translate-y-1 hover:shadow-2xl w-full sm:w-[200px]">
                     <Link href="/products" className="flex items-center justify-center gap-2">
                       View Products
                       <ArrowRight className="h-4 w-4" />
@@ -115,7 +125,7 @@ export function Hero() {
                   whileTap={{ scale: 0.95 }}
                   className="w-full sm:w-auto"
                 >
-                  <Button asChild className="bg-white text-slate-900 border-2 border-slate-800 px-6 sm:px-8 py-2.5 sm:py-3 rounded-xl text-base sm:text-lg font-semibold shadow-xl transition-all duration-300 hover:bg-slate-100 hover:text-slate-900 hover:border-slate-900 hover:-translate-y-1 hover:shadow-2xl w-full sm:w-[200px]">
+                  <Button asChild className="bg-white text-slate-900 border-2 border-slate-800 px-5 sm:px-7 py-2 sm:py-2.5 rounded-lg sm:rounded-xl text-sm sm:text-base font-semibold shadow-xl transition-all duration-300 hover:bg-slate-100 hover:text-slate-900 hover:border-slate-900 hover:-translate-y-1 hover:shadow-2xl w-full sm:w-[200px]">
                     <Link href="/contact" className="flex items-center justify-center">Request a Quote</Link>
                   </Button>
                 </motion.div>

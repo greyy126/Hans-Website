@@ -206,12 +206,12 @@ export default function ContactPage() {
   };
 
   return (
-    <div className="pt-28 md:pt-32 pb-20">
-      <div className="max-w-6xl mx-auto px-6">
+    <div className="pt-24 md:pt-32 pb-16">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6">
         {/* Header */}
-        <div className="text-center mb-12">
-          <h1 className="text-4xl font-semibold text-center">Contact Us</h1>
-          <p className="text-slate-600 text-center mt-2">
+        <div className="text-center mb-10">
+          <h1 className="text-3xl sm:text-4xl font-semibold text-center">Contact Us</h1>
+          <p className="text-slate-600 text-center mt-2 text-base sm:text-lg">
             Call us or email us — we&apos;re here to help.
           </p>
         </div>
@@ -239,7 +239,7 @@ export default function ContactPage() {
           </div>
         )}
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
           {/* Contact Form */}
           <div>
             <form ref={formRef} onSubmit={handleSubmit} className="space-y-6">
@@ -358,7 +358,7 @@ export default function ContactPage() {
               <Button
                 type="submit"
                 disabled={isSubmitting || showConfigBanner}
-                className="w-full bg-slate-900 hover:bg-slate-800 text-white rounded-lg px-6 py-3"
+                className="w-full bg-slate-900 hover:bg-slate-800 text-white rounded-lg px-5 py-2.5 text-sm sm:text-base"
               >
                 {isSubmitting ? (
                   'Sending...'

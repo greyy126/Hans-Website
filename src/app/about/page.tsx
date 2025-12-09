@@ -60,11 +60,11 @@ const values = [
 
 export default function AboutPage() {
   return (
-    <div className="pt-28 md:pt-32 pb-12 bg-gradient-to-b from-gray-50 to-white min-h-screen">
-      <div className="container max-w-7xl mx-auto px-6">
+    <div className="pt-24 md:pt-32 pb-12 md:pb-16 bg-gradient-to-b from-gray-50 to-white min-h-screen">
+      <div className="container max-w-7xl mx-auto px-4 sm:px-6">
         {/* Two-Column Layout */}
         <div className="relative">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-start">
             
             {/* Left Column - Image */}
             <div className="order-1 lg:order-1">
@@ -105,10 +105,10 @@ export default function AboutPage() {
                 </div>
                 
                 {/* Story Content with Drop Cap */}
-                <div className="bg-white rounded-2xl shadow-lg p-8 md:p-10 max-w-2xl">
+                <div className="bg-white rounded-2xl shadow-lg p-6 md:p-10 max-w-2xl">
                   <div className="prose prose-lg max-w-none">
                     <p className="text-slate-700 leading-relaxed mb-6 text-justify">
-                      <span className="float-left text-6xl font-bold text-slate-600 leading-none pr-2 pt-1">F</span>
+                      <span className="md:float-left text-5xl md:text-6xl font-bold text-slate-600 leading-none md:pr-2 md:pt-1">F</span>
                       ounded in 1987, we began as a small chemical trading company 
                       with a simple mission: <span className="font-semibold text-slate-900 border-b-2 border-slate-300 pb-1">to provide reliable, high-quality chemicals to industries 
                       that depend on them</span>. Over the years, we have grown into a trusted partner for 
@@ -160,8 +160,8 @@ export default function AboutPage() {
             <h2 className="text-2xl font-serif font-bold text-center mb-8">Our Journey</h2>
             <div className="space-y-8">
               {milestones.map((milestone, index) => (
-                <div key={index} className="flex items-start space-x-4">
-                  <div className="flex-shrink-0">
+                <div key={index} className="flex flex-col sm:flex-row sm:items-start sm:space-x-4 space-y-3 sm:space-y-0">
+                  <div className="flex-shrink-0 sm:self-start">
                     <div className="w-16 h-16 bg-slate-900 text-white rounded-full flex items-center justify-center text-sm font-bold">
                       {milestone.year}
                     </div>

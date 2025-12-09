@@ -259,14 +259,14 @@ export default function ProductsPage() {
         <meta name="robots" content="index, follow" />
         <link rel="canonical" href="https://hanschemicals.com/products" />
       </Head>
-      <div className="pt-28 md:pt-32 pb-20 bg-gradient-to-b from-gray-50 to-white min-h-screen">
-      <div className="container max-w-7xl mx-auto px-6">
+      <div className="pt-24 md:pt-32 pb-16 bg-gradient-to-b from-gray-50 to-white min-h-screen">
+      <div className="container max-w-7xl mx-auto px-4 sm:px-6">
         {/* Header Section */}
-        <div className="text-center mb-12">
-          <h1 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4">
+        <div className="text-center mb-10 md:mb-12">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-slate-900 mb-3">
             Our Products
           </h1>
-          <p className="text-xl text-slate-600 mb-8 max-w-3xl mx-auto">
+          <p className="text-lg md:text-xl text-slate-600 mb-6 md:mb-8 max-w-3xl mx-auto">
             Trusted by industries for consistent, spec-true supply.
           </p>
           
@@ -362,7 +362,7 @@ export default function ProductsPage() {
         </div>
 
         {/* Products Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredProducts.map((product, index) => (
             <motion.div
               key={product.id}
@@ -375,35 +375,35 @@ export default function ProductsPage() {
                 ease: "easeOut"
               }}
               viewport={{ once: true, margin: "-50px" }}
-              className="bg-sky-50 rounded-xl border border-sky-200 p-4 sm:p-6 lg:p-8 shadow-sm hover:shadow-lg hover:border-sky-300 transition-all duration-150 flex flex-col h-full"
+              className="bg-sky-50 rounded-xl border border-sky-200 p-6 md:p-8 shadow-sm hover:shadow-lg hover:border-sky-300 transition-all duration-150 flex flex-col h-full"
             >
               <div className="flex flex-col h-full">
-                {/* Product Name - Fixed Height for Alignment, clamp to 2 lines */}
-                <div className="mb-4 sm:mb-6 min-h-[80px] sm:min-h-[96px] flex flex-col justify-between">
-                  <h3 className="text-lg sm:text-xl font-semibold text-slate-900 mb-2 sm:mb-3 leading-tight line-clamp-2">
+                {/* Product Name - Fixed Height for Alignment */}
+                <div className="mb-6 md:h-24 flex flex-col justify-between gap-3">
+                  <h3 className="text-xl font-semibold text-slate-900 mb-3 leading-tight">
                     {product.name}
                   </h3>
-                  <span className="inline-block px-3 sm:px-4 py-1.5 sm:py-2 text-xs sm:text-sm font-semibold bg-gradient-to-r from-sky-400 to-blue-500 text-white rounded-full w-fit shadow-md">
+                  <span className="inline-block px-4 py-2 text-sm font-semibold bg-gradient-to-r from-sky-400 to-blue-500 text-white rounded-full w-fit shadow-md">
                     {product.category}
                   </span>
                 </div>
                 
                 {/* Applications Section - Fixed Height for Alignment */}
-                <div className="mb-4 sm:mb-6 flex-grow min-h-[100px] sm:min-h-[120px] flex flex-col">
-                  <h4 className="text-xs sm:text-sm font-semibold text-slate-600 mb-2 sm:mb-3">Applications</h4>
+                <div className="mb-6 flex-grow md:min-h-[120px] flex flex-col">
+                  <h4 className="text-sm font-semibold text-slate-600 mb-3">Applications</h4>
                   {product.applications.length > 0 ? (
-                    <div className="flex flex-wrap gap-1.5 sm:gap-2">
+                    <div className="flex flex-wrap gap-2">
                       {product.applications.map((application, idx) => (
                         <span
                           key={idx}
-                          className="inline-block px-2 sm:px-3 py-1 sm:py-1.5 text-xs font-medium bg-blue-50 text-blue-700 rounded-full border border-blue-100 shadow-sm"
+                          className="inline-block px-3 py-1.5 text-xs font-medium bg-blue-50 text-blue-700 rounded-full border border-blue-100 shadow-sm"
                         >
                           {application}
                         </span>
                       ))}
                     </div>
                   ) : (
-                    <p className="text-xs sm:text-sm text-slate-500">—</p>
+                    <p className="text-sm text-slate-500">—</p>
                   )}
                 </div>
                 
@@ -414,7 +414,7 @@ export default function ProductsPage() {
                     className="w-full bg-slate-900 hover:bg-slate-800 text-white"
                   >
                     <a 
-                      href={product.pdfPath} 
+                      href={encodeURI(product.pdfPath)} 
                       target="_blank" 
                       rel="noopener noreferrer"
                       className="flex items-center justify-center gap-2"

@@ -49,7 +49,7 @@ const vendorCategories = [
 
 export default function VendorsPage() {
   return (
-    <div className="py-12">
+    <div className="py-10 md:py-12">
       <div className="container">
         {/* Header */}
         <div className="text-center mb-12">

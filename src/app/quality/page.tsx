@@ -26,7 +26,7 @@ const qualityFeatures = [
 
 export default function QualityPage() {
   return (
-    <div className="pt-28 md:pt-32 pb-12">
+    <div className="pt-24 md:pt-32 pb-12 md:pb-16">
       <div className="container">
         {/* Header */}
         <div className="text-center mb-12">
@@ -39,7 +39,7 @@ export default function QualityPage() {
         </div>
 
         {/* Quality Features */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 md:gap-6 mb-12">
           {qualityFeatures.map((feature, index) => {
             // Use different blue shades for visual hierarchy
             const blueVariants = [
@@ -74,9 +74,9 @@ export default function QualityPage() {
         </div>
 
         {/* Quality Process */}
-        <div className="bg-blue-50 rounded-lg p-8 border border-blue-100">
+        <div className="bg-blue-50 rounded-lg p-6 md:p-8 border border-blue-100">
           <h2 className="text-2xl font-serif font-bold text-center mb-8 text-slate-900">Our Quality Process</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
             <div className="text-center">
               <div className="w-16 h-16 bg-blue-900 hover:bg-blue-800 text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4 transition-colors duration-300 shadow-md">
                 1

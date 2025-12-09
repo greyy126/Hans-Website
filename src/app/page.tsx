@@ -133,8 +133,8 @@ function DirectorCard({
         )}
         
         {/* Director Info */}
-        <h3 className={`text-2xl font-bold text-slate-900 mb-1 ${photoPath && !imageError ? 'mt-8' : ''}`}>{name}</h3>
-        <p className="text-sm text-slate-500 mb-6">{title}</p>
+        <h3 className={`text-xl sm:text-2xl font-bold text-slate-900 mb-1 ${photoPath && !imageError ? 'mt-8' : ''}`}>{name}</h3>
+        <p className="text-xs sm:text-sm text-slate-500 mb-5 sm:mb-6">{title}</p>
         
         {/* Contact Info */}
         <div className="space-y-3 pt-2">
@@ -192,9 +192,9 @@ export default function HomePage() {
       <Hero />
 
       {/* Metrics Section */}
-      <section id="main-content" className="py-12 md:py-16 bg-gray-50">
+      <section id="main-content" className="py-8 md:py-16 bg-gray-50">
         <div className="container mx-auto max-w-screen-xl px-4 md:px-6">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center items-center">
+          <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 md:gap-8 text-center items-center">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -202,7 +202,7 @@ export default function HomePage() {
               viewport={{ once: true }}
               className="flex flex-col justify-center h-full"
             >
-              <div className="text-5xl font-bold text-slate-900 mb-2">
+              <div className="text-3xl sm:text-4xl md:text-5xl font-bold text-slate-900 mb-1 sm:mb-2">
                 <Counter end={37} />
               </div>
               <p className="text-slate-700">Years of Experience</p>
@@ -215,7 +215,7 @@ export default function HomePage() {
               viewport={{ once: true }}
               className="flex flex-col justify-center h-full"
             >
-              <div className="text-5xl font-bold text-slate-900 mb-2">
+              <div className="text-3xl sm:text-4xl md:text-5xl font-bold text-slate-900 mb-1 sm:mb-2">
                 <Counter end={500} />
               </div>
               <p className="text-slate-700">Products Supplied</p>
@@ -228,7 +228,7 @@ export default function HomePage() {
               viewport={{ once: true }}
               className="flex flex-col justify-center h-full"
             >
-              <div className="text-5xl font-bold text-slate-900 mb-2">
+              <div className="text-3xl sm:text-4xl md:text-5xl font-bold text-slate-900 mb-1 sm:mb-2">
                 <Counter end={1000} />
               </div>
               <p className="text-slate-700">Happy Customers</p>
@@ -241,7 +241,7 @@ export default function HomePage() {
               viewport={{ once: true }}
               className="flex flex-col justify-center h-full"
             >
-              <div className="text-5xl font-bold text-slate-900 mb-2">
+              <div className="text-3xl sm:text-4xl md:text-5xl font-bold text-slate-900 mb-1 sm:mb-2">
                 <Counter end={50} />
               </div>
               <p className="text-slate-700">Industries Served</p>
@@ -251,16 +251,16 @@ export default function HomePage() {
       </section>
 
       {/* Our Directors Section */}
-      <section className="py-16 md:py-24 bg-white">
+      <section className="py-10 md:py-24 bg-white">
         <div className="container mx-auto max-w-screen-xl px-4 md:px-6">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-semibold text-center mb-3">Our Directors</h2>
-            <p className="text-slate-600 text-lg max-w-2xl mx-auto">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold text-center mb-3">Our Directors</h2>
+            <p className="text-slate-600 text-base sm:text-lg max-w-2xl mx-auto">
               Meet the leadership guiding HANS CHEMICALS with integrity and expertise.
             </p>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-5xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-12 max-w-5xl mx-auto">
             {/* Director 1 - Kaushik */}
             <DirectorCard
               delay={0.1}
@@ -287,16 +287,16 @@ export default function HomePage() {
       </section>
 
       {/* Workflow Section */}
-      <section className="py-16 md:py-24 bg-gray-50">
+      <section className="py-10 md:py-24 bg-gray-50">
         <div className="container mx-auto max-w-screen-xl px-4 md:px-6">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-semibold text-center mb-4">Our Workflow</h2>
-            <p className="text-slate-600 max-w-2xl mx-auto">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold text-center mb-3">Our Workflow</h2>
+            <p className="text-slate-600 max-w-2xl mx-auto text-base sm:text-lg">
               From sourcing to delivery, quality is built into every step.
             </p>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-8">
             {workflowCards.map((card, index) => (
               <motion.div
                 key={index}
@@ -305,15 +305,15 @@ export default function HomePage() {
                 transition={{ duration: 0.6, delay: index * 0.2 }}
                 viewport={{ once: true }}
                 whileHover={{ y: -4 }}
-                className="rounded-2xl bg-white shadow-md p-8 hover:shadow-lg transition-all duration-300"
+                className="rounded-2xl bg-white shadow-md p-6 md:p-8 hover:shadow-lg transition-all duration-300"
               >
                 <div className="space-y-4">
-                  <div className="w-12 h-12 bg-slate-900 rounded-xl flex items-center justify-center">
+                  <div className="w-11 h-11 sm:w-12 sm:h-12 bg-slate-900 rounded-xl flex items-center justify-center">
                     <card.icon className="h-6 w-6 text-white" />
                   </div>
                   <div>
-                    <h3 className="text-xl font-semibold text-slate-900 mb-3">{card.title}</h3>
-                    <p className="text-slate-600 leading-relaxed">{card.description}</p>
+                    <h3 className="text-lg sm:text-xl font-semibold text-slate-900 mb-2">{card.title}</h3>
+                    <p className="text-slate-600 leading-relaxed text-sm sm:text-base">{card.description}</p>
                   </div>
                 </div>
               </motion.div>
@@ -323,16 +323,16 @@ export default function HomePage() {
       </section>
 
       {/* Industries We Serve */}
-      <section className="py-16 md:py-24 bg-white">
+      <section className="py-10 md:py-24 bg-white">
         <div className="container mx-auto max-w-screen-xl px-4 md:px-6">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-semibold text-slate-900 mb-4">Industries We Serve</h2>
-            <p className="text-slate-600 max-w-2xl mx-auto">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold text-slate-900 mb-3">Industries We Serve</h2>
+            <p className="text-slate-600 max-w-2xl mx-auto text-base sm:text-lg">
               Specialized chemical solutions across diverse industrial applications
             </p>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6">
             {industries.map((industry, index) => (
               <motion.div
                 key={index}
