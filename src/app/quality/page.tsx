@@ -30,9 +30,9 @@ export default function QualityPage() {
       <div className="container">
         {/* Header */}
         <div className="text-center mb-12">
-          <h1 className="text-4xl font-serif font-bold mb-4 text-slate-900">Quality Assurance</h1>
+          <h1 className="text-3xl md:text-4xl font-serif font-bold mb-4 text-slate-900">Quality Assurance</h1>
           <div className="w-24 h-1 bg-gradient-to-r from-blue-500 to-blue-700 mx-auto mb-4 rounded-full"></div>
-          <p className="text-xl text-slate-600 max-w-3xl mx-auto">
+          <p className="text-base md:text-xl text-slate-600 max-w-3xl mx-auto">
             Our commitment to quality ensures that every chemical we supply meets the highest standards 
             and regulatory requirements. We maintain strict quality control processes from source to delivery.
           </p>

@@ -153,3 +153,9 @@
     text-wrap: balance;
   }
 }
+
+@media (max-width: 640px) {
+  :root {
+    font-size: 15px;
+  }
+}

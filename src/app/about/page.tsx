@@ -64,10 +64,25 @@ export default function AboutPage() {
       <div className="container max-w-7xl mx-auto px-4 sm:px-6">
         {/* Two-Column Layout */}
         <div className="relative">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-start">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-x-16 lg:gap-y-4 items-start">
             
-            {/* Left Column - Image */}
-            <div className="order-1 lg:order-1">
+            {/* Heading & Quote - shown first on mobile, right column on desktop */}
+            <div className="order-1 lg:order-2 lg:col-start-2 space-y-8">
+              <div>
+                <h1 className="text-2xl md:text-4xl font-bold text-slate-900 mb-4">
+                  About Us
+                </h1>
+                <div className="w-24 h-1 bg-slate-900 mb-6 rounded-full"></div>
+                
+                <blockquote className="text-base md:text-xl font-light italic text-slate-600 leading-relaxed">
+                  "For over three decades, we have been a trusted partner in chemical trading, 
+                  providing quality solutions to industries across India and beyond."
+                </blockquote>
+              </div>
+            </div>
+
+            {/* Image */}
+            <div className="order-2 lg:order-1 lg:col-start-1 lg:row-span-2">
               <div className="relative rounded-2xl overflow-hidden shadow-xl">
                 <Image
                   src="/about2.jpg"
@@ -81,47 +96,28 @@ export default function AboutPage() {
               </div>
             </div>
 
-            {/* Right Column - Text Content */}
-            <div className="order-2 lg:order-2 space-y-8">
-              {/* Heading with Accent */}
+            {/* Story - sits after image on mobile, aligns to right column on desktop */}
+            <div className="order-3 lg:order-3 lg:col-start-2 space-y-6">
               <div>
-                <h1 className="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
-                  About HANS CHEMICALS
-                </h1>
-                <div className="w-24 h-1 bg-slate-900 mb-6 rounded-full"></div>
-                
-                {/* Mission Quote */}
-                <blockquote className="text-lg md:text-xl font-light italic text-slate-600 leading-relaxed">
-                  "For over three decades, we have been a trusted partner in chemical trading, 
-                  providing quality solutions to industries across India and beyond."
-                </blockquote>
+                <h2 className="text-2xl font-serif font-bold text-slate-900">Our Story</h2>
               </div>
-
-              {/* Our Story Section */}
-              <div className="space-y-6">
-                {/* Subheading */}
-                <div>
-                  <h2 className="text-2xl font-serif font-bold text-slate-900">Our Story</h2>
-                </div>
-                
-                {/* Story Content with Drop Cap */}
-                <div className="bg-white rounded-2xl shadow-lg p-6 md:p-10 max-w-2xl">
-                  <div className="prose prose-lg max-w-none">
-                    <p className="text-slate-700 leading-relaxed mb-6 text-justify">
-                      <span className="md:float-left text-5xl md:text-6xl font-bold text-slate-600 leading-none md:pr-2 md:pt-1">F</span>
-                      ounded in 1987, we began as a small chemical trading company 
-                      with a simple mission: <span className="font-semibold text-slate-900 border-b-2 border-slate-300 pb-1">to provide reliable, high-quality chemicals to industries 
-                      that depend on them</span>. Over the years, we have grown into a trusted partner for 
-                      companies across electroplating, metal treatment, feed, water treatment, and ceramics industries.
-                    </p>
-                    <p className="text-slate-700 leading-relaxed text-justify">
-                      Our success is built on three pillars: <span className="font-bold text-slate-900 bg-slate-100 px-2 py-1 rounded">quality, reliability, and customer service</span>. 
-                      We understand that our customers&apos; operations depend on the chemicals we supply, 
-                      which is why we never compromise on quality or delivery timelines. Today, we continue 
-                      to expand our product portfolio and supplier network while maintaining the same 
-                      commitment to excellence that has defined us for over three decades.
-                    </p>
-                  </div>
+              
+              <div className="bg-white rounded-2xl shadow-lg p-6 md:p-10 max-w-2xl">
+                <div className="prose prose-lg max-w-none">
+                  <p className="text-slate-700 leading-relaxed mb-6 text-justify">
+                    <span className="md:float-left text-5xl md:text-6xl font-bold text-slate-600 leading-none md:pr-2 md:pt-1">F</span>
+                    ounded in 1987, we began as a small chemical trading company 
+                    with a simple mission: <span className="font-semibold text-slate-900 border-b-2 border-slate-300 pb-1">to provide reliable, high-quality chemicals to industries 
+                    that depend on them</span>. Over the years, we have grown into a trusted partner for 
+                    companies across electroplating, metal treatment, feed, water treatment, and ceramics industries.
+                  </p>
+                  <p className="text-slate-700 leading-relaxed text-justify">
+                    Our success is built on three pillars: <span className="font-bold text-slate-900 bg-slate-100 px-2 py-1 rounded">quality, reliability, and customer service</span>. 
+                    We understand that our customers&apos; operations depend on the chemicals we supply, 
+                    which is why we never compromise on quality or delivery timelines. Today, we continue 
+                    to expand our product portfolio and supplier network while maintaining the same 
+                    commitment to excellence that has defined us for over three decades.
+                  </p>
                 </div>
               </div>
             </div>

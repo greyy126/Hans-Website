@@ -89,14 +89,14 @@ export function Navbar() {
           </div>
         </div>
 
-        {/* Mobile Navigation - Slide down animation */}
+      {/* Mobile Navigation - Slide down animation */}
       {/* Mobile menu panel */}
       <div 
         className={`lg:hidden overflow-hidden transition-[max-height,opacity] duration-250 ease-in-out ${
-          mobileMenuOpen ? 'max-h-96 opacity-100 mt-2' : 'max-h-0 opacity-0 mt-0'
+          mobileMenuOpen ? 'max-h-[560px] opacity-100 mt-3' : 'max-h-0 opacity-0 mt-0'
         }`}
       >
-        <div className="bg-white shadow-md border border-slate-200 px-4 sm:px-5 py-4 w-screen -mx-4 sm:-mx-6 rounded-b-2xl">
+        <div className="bg-white shadow-lg border border-slate-200 px-5 py-5 w-screen -mx-4 sm:-mx-6 rounded-3xl">
           <div className="space-y-3">
             {navigation.map((item) => {
               const isActive = pathname === item.href;
@@ -104,10 +104,10 @@ export function Navbar() {
                 <Link
                   key={item.name}
                   href={item.href}
-                  className={`block px-3 py-3 text-base font-medium transition-colors min-h-[44px] ${
+                  className={`block px-4 py-3.5 text-base font-medium transition-colors min-h-[48px] rounded-xl ${
                     isActive
-                      ? 'text-slate-900 bg-slate-100 font-semibold rounded-md'
-                      : 'text-slate-700 hover:text-slate-900 hover:bg-slate-50 rounded-md'
+                      ? 'text-slate-900 bg-slate-100 font-semibold'
+                      : 'text-slate-700 hover:text-slate-900 hover:bg-slate-50'
                   }`}
                   onClick={() => setMobileMenuOpen(false)}
                 >
@@ -115,8 +115,8 @@ export function Navbar() {
                 </Link>
               );
             })}
-            <div className="pt-2">
-              <Button asChild className="w-full bg-slate-900 text-white hover:bg-slate-800 rounded-md min-h-[44px]">
+            <div className="pt-3">
+              <Button asChild className="w-full bg-slate-900 text-white hover:bg-slate-800 rounded-2xl min-h-[52px] text-base font-semibold py-3">
                 <Link href="/contact">Request a Quote</Link>
               </Button>
             </div>

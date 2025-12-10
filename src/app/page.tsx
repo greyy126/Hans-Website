@@ -112,10 +112,10 @@ function DirectorCard({
       transition={{ duration: 0.6, delay }}
       viewport={{ once: true }}
       whileHover={{ y: -4 }}
-      className={`relative bg-gradient-to-br from-slate-50 to-white rounded-3xl shadow-md hover:shadow-xl transition-all duration-300 overflow-visible group ${photoPath && !imageError ? 'pt-20' : 'pt-8'} pb-8 px-8 border border-slate-200/50`}
+      className={`relative bg-gradient-to-br from-sky-50 via-white to-emerald-50 rounded-3xl shadow-md hover:shadow-xl transition-all duration-300 overflow-visible group ${photoPath && !imageError ? 'pt-20' : 'pt-8'} pb-8 px-8 border border-slate-200/50`}
     >
       {/* Minimal gradient border outline */}
-      <div className="absolute inset-0 rounded-3xl bg-gradient-to-r from-blue-500/10 via-slate-300/10 to-slate-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
+      <div className="absolute inset-0 rounded-3xl bg-gradient-to-r from-sky-400/20 via-slate-200/10 to-emerald-400/20 opacity-80 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
       
       <div className="text-center relative z-10">
         {/* Director Portrait - Overlapping top edge */}
@@ -194,7 +194,7 @@ export default function HomePage() {
       {/* Metrics Section */}
       <section id="main-content" className="py-8 md:py-16 bg-gray-50">
         <div className="container mx-auto max-w-screen-xl px-4 md:px-6">
-          <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 md:gap-8 text-center items-center">
+          <div className="grid grid-cols-4 gap-2 sm:gap-4 md:gap-8 text-center items-center">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -202,10 +202,10 @@ export default function HomePage() {
               viewport={{ once: true }}
               className="flex flex-col justify-center h-full"
             >
-              <div className="text-3xl sm:text-4xl md:text-5xl font-bold text-slate-900 mb-1 sm:mb-2">
+              <div className="text-2xl sm:text-4xl md:text-5xl font-bold text-slate-900 mb-1 sm:mb-2">
                 <Counter end={37} />
               </div>
-              <p className="text-slate-700">Years of Experience</p>
+              <p className="text-slate-700 text-xs sm:text-sm">Years of Experience</p>
             </motion.div>
             
             <motion.div
@@ -215,10 +215,10 @@ export default function HomePage() {
               viewport={{ once: true }}
               className="flex flex-col justify-center h-full"
             >
-              <div className="text-3xl sm:text-4xl md:text-5xl font-bold text-slate-900 mb-1 sm:mb-2">
+              <div className="text-2xl sm:text-4xl md:text-5xl font-bold text-slate-900 mb-1 sm:mb-2">
                 <Counter end={500} />
               </div>
-              <p className="text-slate-700">Products Supplied</p>
+              <p className="text-slate-700 text-xs sm:text-sm">Products Supplied</p>
             </motion.div>
             
             <motion.div
@@ -228,10 +228,10 @@ export default function HomePage() {
               viewport={{ once: true }}
               className="flex flex-col justify-center h-full"
             >
-              <div className="text-3xl sm:text-4xl md:text-5xl font-bold text-slate-900 mb-1 sm:mb-2">
+              <div className="text-2xl sm:text-4xl md:text-5xl font-bold text-slate-900 mb-1 sm:mb-2">
                 <Counter end={1000} />
               </div>
-              <p className="text-slate-700">Happy Customers</p>
+              <p className="text-slate-700 text-xs sm:text-sm">Happy Customers</p>
             </motion.div>
             
             <motion.div
@@ -241,10 +241,10 @@ export default function HomePage() {
               viewport={{ once: true }}
               className="flex flex-col justify-center h-full"
             >
-              <div className="text-3xl sm:text-4xl md:text-5xl font-bold text-slate-900 mb-1 sm:mb-2">
+              <div className="text-2xl sm:text-4xl md:text-5xl font-bold text-slate-900 mb-1 sm:mb-2">
                 <Counter end={50} />
               </div>
-              <p className="text-slate-700">Industries Served</p>
+              <p className="text-slate-700 text-xs sm:text-sm">Industries Served</p>
             </motion.div>
           </div>
         </div>
@@ -253,9 +253,9 @@ export default function HomePage() {
       {/* Our Directors Section */}
       <section className="py-10 md:py-24 bg-white">
         <div className="container mx-auto max-w-screen-xl px-4 md:px-6">
-          <div className="text-center mb-16">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold text-center mb-3">Our Directors</h2>
-            <p className="text-slate-600 text-base sm:text-lg max-w-2xl mx-auto">
+          <div className="text-center mb-10 md:mb-16">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold text-center mb-3">Leadership</h2>
+            <p className="hidden sm:block text-slate-600 text-sm sm:text-lg max-w-2xl mx-auto">
               Meet the leadership guiding HANS CHEMICALS with integrity and expertise.
             </p>
           </div>
@@ -291,7 +291,7 @@ export default function HomePage() {
         <div className="container mx-auto max-w-screen-xl px-4 md:px-6">
           <div className="text-center mb-16">
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold text-center mb-3">Our Workflow</h2>
-            <p className="text-slate-600 max-w-2xl mx-auto text-base sm:text-lg">
+            <p className="text-slate-600 max-w-2xl mx-auto text-sm sm:text-lg">
               From sourcing to delivery, quality is built into every step.
             </p>
           </div>
@@ -312,7 +312,7 @@ export default function HomePage() {
                     <card.icon className="h-6 w-6 text-white" />
                   </div>
                   <div>
-                    <h3 className="text-lg sm:text-xl font-semibold text-slate-900 mb-2">{card.title}</h3>
+                    <h3 className="text-base sm:text-xl font-semibold text-slate-900 mb-2">{card.title}</h3>
                     <p className="text-slate-600 leading-relaxed text-sm sm:text-base">{card.description}</p>
                   </div>
                 </div>
@@ -327,7 +327,7 @@ export default function HomePage() {
         <div className="container mx-auto max-w-screen-xl px-4 md:px-6">
           <div className="text-center mb-16">
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold text-slate-900 mb-3">Industries We Serve</h2>
-            <p className="text-slate-600 max-w-2xl mx-auto text-base sm:text-lg">
+            <p className="text-slate-600 max-w-2xl mx-auto text-sm sm:text-lg">
               Specialized chemical solutions across diverse industrial applications
             </p>
           </div>
@@ -348,8 +348,8 @@ export default function HomePage() {
                     <industry.icon className="h-6 w-6 text-slate-600 group-hover:text-white transition-colors" />
                   </div>
                   <div>
-                    <h3 className="text-lg font-semibold text-slate-900 mb-2">{industry.title}</h3>
-                    <p className="text-slate-600 text-sm">{industry.description}</p>
+                    <h3 className="text-base sm:text-lg font-semibold text-slate-900 mb-2">{industry.title}</h3>
+                    <p className="text-slate-600 text-sm sm:text-base">{industry.description}</p>
                   </div>
                 </div>
               </motion.div>
