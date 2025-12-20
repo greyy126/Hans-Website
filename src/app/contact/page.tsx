@@ -114,9 +114,9 @@ export default function ContactPage() {
     }
   }, [initDone]);
 
-  // Validate configuration and show banner if missing
-  const configCheck = validateEmailJSConfig();
-  const showConfigBanner = !configCheck.valid;
+// Validate configuration and show banner if missing (dev-only; hidden in production static hosting)
+const configCheck = validateEmailJSConfig();
+const showConfigBanner = process.env.NODE_ENV !== 'production' && !configCheck.valid;
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
