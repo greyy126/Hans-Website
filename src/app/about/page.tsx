@@ -75,8 +75,8 @@ export default function AboutPage() {
                 <div className="w-24 h-1 bg-slate-900 mb-6 rounded-full"></div>
                 
                 <blockquote className="text-base md:text-xl font-light italic text-slate-600 leading-relaxed">
-                  "For over three decades, we have been a trusted partner in chemical trading, 
-                  providing quality solutions to industries across India and beyond."
+                  &ldquo;For over three decades, we have been a trusted partner in chemical trading, 
+                  providing quality solutions to industries across India and beyond.&rdquo;
                 </blockquote>
               </div>
             </div>

@@ -22,7 +22,7 @@ const getProductCategory = (fileName: string): string => {
 // Convert filename to display name
 const formatProductName = (fileName: string): string => {
   // Remove .pdf extension
-  let name = fileName.replace('.pdf', '');
+  const name = fileName.replace('.pdf', '');
   
   // Convert to title case
   return name.replace(/\w\S*/g, (txt) => 
@@ -68,4 +68,3 @@ export const products: Product[] = [
 
 // Get unique categories
 export const categories = ['All', ...Array.from(new Set(products.map(p => p.category)))];
-

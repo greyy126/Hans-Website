@@ -46,6 +46,47 @@ function validateEmailJSConfig(): { valid: boolean; missing: string[] } {
   return { valid: missing.length === 0, missing };
 }
 
+function getErrorText(error: unknown): string {
+  if (typeof error === 'string') {
+    return error;
+  }
+
+  if (error && typeof error === 'object') {
+    const err = error as { text?: unknown; message?: unknown; response?: { text?: unknown } };
+
+    if (typeof err.text === 'string') {
+      return err.text;
+    }
+
+    if (typeof err.message === 'string') {
+      return err.message;
+    }
+
+    if (err.response && typeof err.response.text === 'string') {
+      return err.response.text;
+    }
+  }
+
+  return 'Unknown error';
+}
+
+function getErrorDetails(error: unknown) {
+  if (error && typeof error === 'object') {
+    const err = error as { message?: unknown; text?: unknown; response?: { text?: unknown }; status?: unknown; stack?: unknown };
+
+    return {
+      error,
+      message: typeof err.message === 'string' ? err.message : undefined,
+      text: typeof err.text === 'string' ? err.text : undefined,
+      status: err.status,
+      responseText: typeof err.response?.text === 'string' ? err.response.text : undefined,
+      stack: typeof err.stack === 'string' ? err.stack : undefined
+    };
+  }
+
+  return { error };
+}
+
 export default function ContactPage() {
   const formRef = useRef<HTMLFormElement>(null);
   const [formData, setFormData] = useState({
@@ -129,28 +170,12 @@ export default function ContactPage() {
       } else {
         throw new Error(`EmailJS returned unexpected status: ${response.status}, text: ${response.text}`);
       }
-    } catch (error: any) {
+    } catch (error: unknown) {
       // Log full error for debugging
-      console.error('EmailJS error details:', {
-        error,
-        message: error?.message,
-        text: error?.text,
-        status: error?.status,
-        response: error?.response,
-        stack: error?.stack
-      });
+      console.error('EmailJS error details:', getErrorDetails(error));
 
       // Extract error message from various possible error formats
-      let errorText = '';
-      if (error?.text) {
-        errorText = String(error.text);
-      } else if (error?.message) {
-        errorText = String(error.message);
-      } else if (error?.response?.text) {
-        errorText = String(error.response.text);
-      } else {
-        errorText = String(error);
-      }
+      const errorText = getErrorText(error);
 
       // Convert to lowercase for easier matching
       const errorLower = errorText.toLowerCase();

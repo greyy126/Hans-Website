@@ -1,15 +1,10 @@
 'use client';
 
-import Link from 'next/link';
-import Image from 'next/image';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent } from '@/components/ui/card';
 import { Hero } from '@/components/hero';
 import { 
   Building2, 
   FlaskConical, 
   Truck, 
-  Quote,
   Zap,
   Wheat,
   Palette,
@@ -91,19 +86,14 @@ function DirectorCard({
   name, 
   title, 
   phone, 
-  email, 
-  photoPath, 
-  initials 
+  email 
 }: { 
   delay: number; 
   name: string; 
   title: string; 
   phone: string; 
-  email: string; 
-  photoPath: string | null; 
-  initials: string;
+  email: string;
 }) {
-  const [imageError, setImageError] = useState(false);
 
   return (
     <motion.div
@@ -112,28 +102,15 @@ function DirectorCard({
       transition={{ duration: 0.6, delay }}
       viewport={{ once: true }}
       whileHover={{ y: -4 }}
-      className={`relative bg-gradient-to-br from-sky-50 via-white to-emerald-50 rounded-3xl shadow-md hover:shadow-xl transition-all duration-300 overflow-visible group ${photoPath && !imageError ? 'pt-20' : 'pt-8'} pb-8 px-8 border border-slate-200/50`}
+      className="relative bg-gradient-to-br from-sky-50 via-white to-emerald-50 rounded-3xl shadow-md hover:shadow-xl transition-all duration-300 overflow-visible group pt-10 pb-8 px-8 border border-slate-200/50"
     >
       {/* Minimal gradient border outline */}
       <div className="absolute inset-0 rounded-3xl bg-gradient-to-r from-sky-400/20 via-slate-200/10 to-emerald-400/20 opacity-80 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
       
       <div className="text-center relative z-10">
         {/* Director Portrait - Overlapping top edge */}
-        {photoPath && !imageError && (
-          <div className="absolute -top-16 left-1/2 transform -translate-x-1/2 w-32 h-32 rounded-full overflow-hidden shadow-lg ring-4 ring-white bg-white">
-            <Image
-              src={photoPath}
-              alt={name}
-              width={128}
-              height={128}
-              className="w-full h-full object-cover"
-              onError={() => setImageError(true)}
-            />
-          </div>
-        )}
-        
         {/* Director Info */}
-        <h3 className={`text-xl sm:text-2xl font-bold text-slate-900 mb-1 ${photoPath && !imageError ? 'mt-8' : ''}`}>{name}</h3>
+        <h3 className="text-xl sm:text-2xl font-bold text-slate-900 mb-1">{name}</h3>
         <p className="text-xs sm:text-sm text-slate-500 mb-5 sm:mb-6">{title}</p>
         
         {/* Contact Info */}
@@ -181,6 +158,12 @@ function Counter({ end, duration = 2000 }: { end: number; duration?: number }) {
 }
 
 export default function HomePage() {
+  const [pageMounted, setPageMounted] = useState(false);
+
+  useEffect(() => {
+    setPageMounted(true);
+  }, []);
+
   return (
     <div>
       {/* Skip to content link */}
@@ -191,85 +174,86 @@ export default function HomePage() {
       {/* Hero Section */}
       <Hero />
 
-      {/* Metrics Section */}
-      <section id="main-content" className="py-8 md:py-16 bg-gray-50">
-        <div className="container mx-auto max-w-screen-xl px-4 md:px-6">
-          <div className="grid grid-cols-4 gap-2 sm:gap-4 md:gap-8 text-center items-center">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              viewport={{ once: true }}
-              className="flex flex-col justify-center h-full"
-            >
-              <div className="text-2xl sm:text-4xl md:text-5xl font-bold text-slate-900 mb-1 sm:mb-2">
-                <Counter end={37} />
+      {/* Render non-hero content only after hydration to prevent flashes */}
+      {pageMounted && (
+        <>
+          {/* Metrics Section */}
+          <section id="main-content" className="py-8 md:py-16 bg-gray-50">
+            <div className="container mx-auto max-w-screen-xl px-4 md:px-6">
+              <div className="grid grid-cols-4 gap-2 sm:gap-4 md:gap-8 text-center items-center">
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 0.1 }}
+                  viewport={{ once: true }}
+                  className="flex flex-col justify-center h-full"
+                >
+                  <div className="text-2xl sm:text-4xl md:text-5xl font-bold text-slate-900 mb-1 sm:mb-2">
+                    <Counter end={37} />
+                  </div>
+                  <p className="text-slate-700 text-xs sm:text-sm">Years of Experience</p>
+                </motion.div>
+                
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 0.2 }}
+                  viewport={{ once: true }}
+                  className="flex flex-col justify-center h-full"
+                >
+                  <div className="text-2xl sm:text-4xl md:text-5xl font-bold text-slate-900 mb-1 sm:mb-2">
+                    <Counter end={500} />
+                  </div>
+                  <p className="text-slate-700 text-xs sm:text-sm">Products Supplied</p>
+                </motion.div>
+                
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 0.3 }}
+                  viewport={{ once: true }}
+                  className="flex flex-col justify-center h-full"
+                >
+                  <div className="text-2xl sm:text-4xl md:text-5xl font-bold text-slate-900 mb-1 sm:mb-2">
+                    <Counter end={1000} />
+                  </div>
+                  <p className="text-slate-700 text-xs sm:text-sm">Happy Customers</p>
+                </motion.div>
+                
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 0.4 }}
+                  viewport={{ once: true }}
+                  className="flex flex-col justify-center h-full"
+                >
+                  <div className="text-2xl sm:text-4xl md:text-5xl font-bold text-slate-900 mb-1 sm:mb-2">
+                    <Counter end={50} />
+                  </div>
+                  <p className="text-slate-700 text-xs sm:text-sm">Industries Served</p>
+                </motion.div>
               </div>
-              <p className="text-slate-700 text-xs sm:text-sm">Years of Experience</p>
-            </motion.div>
-            
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              viewport={{ once: true }}
-              className="flex flex-col justify-center h-full"
-            >
-              <div className="text-2xl sm:text-4xl md:text-5xl font-bold text-slate-900 mb-1 sm:mb-2">
-                <Counter end={500} />
-              </div>
-              <p className="text-slate-700 text-xs sm:text-sm">Products Supplied</p>
-            </motion.div>
-            
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-              viewport={{ once: true }}
-              className="flex flex-col justify-center h-full"
-            >
-              <div className="text-2xl sm:text-4xl md:text-5xl font-bold text-slate-900 mb-1 sm:mb-2">
-                <Counter end={1000} />
-              </div>
-              <p className="text-slate-700 text-xs sm:text-sm">Happy Customers</p>
-            </motion.div>
-            
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-              viewport={{ once: true }}
-              className="flex flex-col justify-center h-full"
-            >
-              <div className="text-2xl sm:text-4xl md:text-5xl font-bold text-slate-900 mb-1 sm:mb-2">
-                <Counter end={50} />
-              </div>
-              <p className="text-slate-700 text-xs sm:text-sm">Industries Served</p>
-            </motion.div>
-          </div>
-        </div>
-      </section>
+            </div>
+          </section>
 
-      {/* Our Directors Section */}
-      <section className="py-10 md:py-24 bg-white">
-        <div className="container mx-auto max-w-screen-xl px-4 md:px-6">
-          <div className="text-center mb-10 md:mb-16">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold text-center mb-3">Leadership</h2>
-            <p className="hidden sm:block text-slate-600 text-sm sm:text-lg max-w-2xl mx-auto">
-              Meet the leadership guiding HANS CHEMICALS with integrity and expertise.
-            </p>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-12 max-w-5xl mx-auto">
-            {/* Director 1 - Kaushik */}
-            <DirectorCard
-              delay={0.1}
-              name="Kaushik Champaklal Shah"
-              title="Director"
-              phone="+91 9022115122"
-              email="kaushikcshah@ymail.com"
-              photoPath="/kaushik.jpg"
-              initials="KS"
+          {/* Our Directors Section */}
+          <section className="py-10 md:py-24 bg-white">
+            <div className="container mx-auto max-w-screen-xl px-4 md:px-6">
+              <div className="text-center mb-10 md:mb-16">
+                <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold text-center mb-3">Leadership</h2>
+                <p className="hidden sm:block text-slate-600 text-sm sm:text-lg max-w-2xl mx-auto">
+                  Meet the leadership guiding HANS CHEMICALS with integrity and expertise.
+                </p>
+              </div>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-12 max-w-5xl mx-auto">
+                {/* Director 1 - Kaushik */}
+                <DirectorCard
+                  delay={0.1}
+                  name="Kaushik Champaklal Shah"
+                  title="Director"
+                  phone="+91 9022115122"
+                  email="kaushikcshah@ymail.com"
             />
 
             {/* Director 2 - Himanshu */}
@@ -279,84 +263,84 @@ export default function HomePage() {
               title="Director"
               phone="+91 9322255128"
               email="himanshucshah@yahoo.com"
-              photoPath={null}
-              initials="HS"
             />
-          </div>
-        </div>
-      </section>
+              </div>
+            </div>
+          </section>
 
-      {/* Workflow Section */}
-      <section className="py-10 md:py-24 bg-gray-50">
-        <div className="container mx-auto max-w-screen-xl px-4 md:px-6">
-          <div className="text-center mb-16">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold text-center mb-3">Our Workflow</h2>
-            <p className="text-slate-600 max-w-2xl mx-auto text-sm sm:text-lg">
-              From sourcing to delivery, quality is built into every step.
-            </p>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-8">
-            {workflowCards.map((card, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.2 }}
-                viewport={{ once: true }}
-                whileHover={{ y: -4 }}
-                className="rounded-2xl bg-white shadow-md p-6 md:p-8 hover:shadow-lg transition-all duration-300"
-              >
-                <div className="space-y-4">
-                  <div className="w-11 h-11 sm:w-12 sm:h-12 bg-slate-900 rounded-xl flex items-center justify-center">
-                    <card.icon className="h-6 w-6 text-white" />
-                  </div>
-                  <div>
-                    <h3 className="text-base sm:text-xl font-semibold text-slate-900 mb-2">{card.title}</h3>
-                    <p className="text-slate-600 leading-relaxed text-sm sm:text-base">{card.description}</p>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
+          {/* Workflow Section */}
+          <section className="py-10 md:py-24 bg-gray-50">
+            <div className="container mx-auto max-w-screen-xl px-4 md:px-6">
+              <div className="text-center mb-16">
+                <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold text-center mb-3">Our Workflow</h2>
+                <p className="text-slate-600 max-w-2xl mx-auto text-sm sm:text-lg">
+                  From sourcing to delivery, quality is built into every step.
+                </p>
+              </div>
+              
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-8">
+                {workflowCards.map((card, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, delay: index * 0.2 }}
+                    viewport={{ once: true }}
+                    whileHover={{ y: -4 }}
+                    className="rounded-2xl bg-white shadow-md p-6 md:p-8 hover:shadow-lg transition-all duration-300"
+                  >
+                    <div className="space-y-4">
+                      <div className="w-11 h-11 sm:w-12 sm:h-12 bg-slate-900 rounded-xl flex items-center justify-center">
+                        <card.icon className="h-6 w-6 text-white" />
+                      </div>
+                      <div>
+                        <h3 className="text-base sm:text-xl font-semibold text-slate-900 mb-2">{card.title}</h3>
+                        <p className="text-slate-600 leading-relaxed text-sm sm:text-base">{card.description}</p>
+                      </div>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+          </section>
 
-      {/* Industries We Serve */}
-      <section className="py-10 md:py-24 bg-white">
-        <div className="container mx-auto max-w-screen-xl px-4 md:px-6">
-          <div className="text-center mb-16">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold text-slate-900 mb-3">Industries We Serve</h2>
-            <p className="text-slate-600 max-w-2xl mx-auto text-sm sm:text-lg">
-              Specialized chemical solutions across diverse industrial applications
-            </p>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6">
-            {industries.map((industry, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                viewport={{ once: true }}
-                whileHover={{ scale: 1.02 }}
-                className="rounded-2xl bg-white border border-slate-200 p-6 hover:border-slate-900 hover:shadow-md transition-all duration-300 group"
-              >
-                <div className="flex items-start space-x-4">
-                  <div className="w-12 h-12 bg-slate-100 rounded-xl flex items-center justify-center group-hover:bg-slate-900 transition-colors">
-                    <industry.icon className="h-6 w-6 text-slate-600 group-hover:text-white transition-colors" />
-                  </div>
-                  <div>
-                    <h3 className="text-base sm:text-lg font-semibold text-slate-900 mb-2">{industry.title}</h3>
-                    <p className="text-slate-600 text-sm sm:text-base">{industry.description}</p>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
+          {/* Industries We Serve */}
+          <section className="py-10 md:py-24 bg-white">
+            <div className="container mx-auto max-w-screen-xl px-4 md:px-6">
+              <div className="text-center mb-16">
+                <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold text-slate-900 mb-3">Industries We Serve</h2>
+                <p className="text-slate-600 max-w-2xl mx-auto text-sm sm:text-lg">
+                  Specialized chemical solutions across diverse industrial applications
+                </p>
+              </div>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6">
+                {industries.map((industry, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, delay: index * 0.1 }}
+                    viewport={{ once: true }}
+                    whileHover={{ scale: 1.02 }}
+                    className="rounded-2xl bg-white border border-slate-200 p-6 hover:border-slate-900 hover:shadow-md transition-all duration-300 group"
+                  >
+                    <div className="flex items-start space-x-4">
+                      <div className="w-12 h-12 bg-slate-100 rounded-xl flex items-center justify-center group-hover:bg-slate-900 transition-colors">
+                        <industry.icon className="h-6 w-6 text-slate-600 group-hover:text-white transition-colors" />
+                      </div>
+                      <div>
+                        <h3 className="text-base sm:text-lg font-semibold text-slate-900 mb-2">{industry.title}</h3>
+                        <p className="text-slate-600 text-sm sm:text-base">{industry.description}</p>
+                      </div>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+          </section>
+        </>
+      )}
 
     </div>
   );
