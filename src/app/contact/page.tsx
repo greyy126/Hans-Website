@@ -26,10 +26,10 @@ import { Mail, Phone, MapPin, Send, AlertCircle } from 'lucide-react';
 import { useState, useRef, useEffect } from 'react';
 import emailjs from '@emailjs/browser';
 
-// EmailJS configuration inlined for static hosting (fallback to env if provided)
-const SERVICE_ID = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID || 'service_6xe9955';
-const TEMPLATE_ID = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID || 'template_6qgxi6d';
-const PUBLIC_KEY = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY || 'wNVjkkybke9YW3C60';
+// EmailJS configuration provided at build time (e.g., via GitHub Actions env)
+const SERVICE_ID = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
+const TEMPLATE_ID = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
+const PUBLIC_KEY = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
 
 // Validate EmailJS configuration
 function validateEmailJSConfig(): { valid: boolean; missing: string[] } {
