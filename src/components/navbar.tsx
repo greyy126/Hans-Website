@@ -37,7 +37,7 @@ export function Navbar() {
         {/* Logo */}
         <Link href="/" className="flex items-center space-x-2 sm:space-x-2.5 flex-shrink-0">
           <Image
-            src="/Hans_logo-update.png"
+            src="/Hans-Website/Hans_logo-update.png"
             alt="Hans Chemicals Pvt. Ltd"
             width={32}
             height={32}
