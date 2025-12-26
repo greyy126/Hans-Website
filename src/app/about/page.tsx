@@ -1,6 +1,5 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Target, Users, Award, Globe } from 'lucide-react';
-import Image from 'next/image';
 
 const milestones = [
   {
@@ -84,13 +83,12 @@ export default function AboutPage() {
             {/* Image */}
             <div className="order-2 lg:order-1 lg:col-start-1 lg:row-span-2">
               <div className="relative rounded-2xl overflow-hidden shadow-xl">
-                <Image
+                <img
                   src="/about2.jpg"
                   alt="HANS CHEMICALS - About Us"
                   width={600}
                   height={700}
                   className="w-full h-auto object-cover"
-                  priority
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
               </div>

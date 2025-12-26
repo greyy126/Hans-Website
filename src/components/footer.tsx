@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import Image from 'next/image';
 import { Mail, Phone, MapPin } from 'lucide-react';
 
 const quickLinks = [
@@ -16,8 +15,8 @@ export function Footer() {
           {/* Column 1: Brand */}
           <div className="space-y-3">
             <div className="flex items-center space-x-3">
-              <Image
-                src="/Hans_logo.png"
+              <img
+                src="/Hans_logo-update.png"
                 alt="Hans Chemicals Pvt. Ltd"
                 width={80}
                 height={80}

@@ -1,7 +1,6 @@
 'use client';
 
 import Link from 'next/link';
-import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import { Menu, X } from 'lucide-react';
 import { useEffect, useState } from 'react';
@@ -36,8 +35,8 @@ export function Navbar() {
       <div className="bg-white/80 backdrop-blur-md shadow-lg border border-slate-200/60 px-4 sm:px-5 lg:px-6 py-2 transition-all duration-300 rounded-full flex items-center justify-between">
         {/* Logo */}
         <Link href="/" className="flex items-center space-x-2 sm:space-x-2.5 flex-shrink-0">
-          <Image
-            src="Hans_logo-update.png"
+          <img
+            src="/Hans_logo-update.png"
             alt="Hans Chemicals Pvt. Ltd"
             width={32}
             height={32}
