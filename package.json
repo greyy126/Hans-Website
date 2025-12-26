@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",
+    "postbuild": "mkdir -p out && cp public/sitemap.xml out/sitemap.xml && cp public/robots.txt out/robots.txt",
     "start": "next start",
     "lint": "eslint"
   },
