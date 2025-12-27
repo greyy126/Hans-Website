@@ -102,10 +102,10 @@ function DirectorCard({
       transition={{ duration: 0.6, delay }}
       viewport={{ once: true }}
       whileHover={{ y: -4 }}
-      className="relative bg-gradient-to-br from-sky-50 via-white to-emerald-50 rounded-3xl shadow-md hover:shadow-xl transition-all duration-300 overflow-visible group pt-10 pb-8 px-8 border border-slate-200/50"
+      className="relative bg-amber-50 rounded-3xl shadow-md hover:shadow-xl transition-all duration-300 overflow-visible group pt-10 pb-8 px-8 border border-amber-100"
     >
-      {/* Minimal gradient border outline */}
-      <div className="absolute inset-0 rounded-3xl bg-gradient-to-r from-sky-400/20 via-slate-200/10 to-emerald-400/20 opacity-80 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
+      {/* Minimal outline */}
+      <div className="absolute inset-0 rounded-3xl opacity-80 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
       
       <div className="text-center relative z-10">
         {/* Director Portrait - Overlapping top edge */}
@@ -178,9 +178,9 @@ export default function HomePage() {
       {pageMounted && (
         <>
           {/* Metrics Section */}
-          <section id="main-content" className="py-8 md:py-16 bg-gray-50">
+          <section id="main-content" className="py-6 md:py-10 bg-gray-50">
             <div className="container mx-auto max-w-screen-xl px-4 md:px-6">
-              <div className="grid grid-cols-4 gap-2 sm:gap-4 md:gap-8 text-center items-center">
+              <div className="grid grid-cols-4 gap-4 sm:gap-6 md:gap-10 text-center items-center">
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -188,10 +188,13 @@ export default function HomePage() {
                   viewport={{ once: true }}
                   className="flex flex-col justify-center h-full"
                 >
-                  <div className="text-2xl sm:text-4xl md:text-5xl font-bold text-slate-900 mb-1 sm:mb-2">
+                  <div
+                    className="text-3xl sm:text-5xl md:text-6xl font-bold text-slate-900 mb-2 sm:mb-3"
+                    style={{ fontFamily: 'var(--font-dm-serif-display)' }}
+                  >
                     <Counter end={37} />
                   </div>
-                  <p className="text-slate-700 text-xs sm:text-sm">Years of Experience</p>
+                  <p className="text-gray-800 font-bold text-xs sm:text-sm text-center">Years of Experience</p>
                 </motion.div>
                 
                 <motion.div
@@ -201,10 +204,13 @@ export default function HomePage() {
                   viewport={{ once: true }}
                   className="flex flex-col justify-center h-full"
                 >
-                  <div className="text-2xl sm:text-4xl md:text-5xl font-bold text-slate-900 mb-1 sm:mb-2">
+                  <div
+                    className="text-3xl sm:text-5xl md:text-6xl font-bold text-slate-900 mb-2 sm:mb-3"
+                    style={{ fontFamily: 'var(--font-dm-serif-display)' }}
+                  >
                     <Counter end={500} />
                   </div>
-                  <p className="text-slate-700 text-xs sm:text-sm">Products Supplied</p>
+                  <p className="text-gray-800 font-bold text-xs sm:text-sm text-center">Products Supplied</p>
                 </motion.div>
                 
                 <motion.div
@@ -214,10 +220,13 @@ export default function HomePage() {
                   viewport={{ once: true }}
                   className="flex flex-col justify-center h-full"
                 >
-                  <div className="text-2xl sm:text-4xl md:text-5xl font-bold text-slate-900 mb-1 sm:mb-2">
+                  <div
+                    className="text-3xl sm:text-5xl md:text-6xl font-bold text-slate-900 mb-2 sm:mb-3"
+                    style={{ fontFamily: 'var(--font-dm-serif-display)' }}
+                  >
                     <Counter end={1000} />
                   </div>
-                  <p className="text-slate-700 text-xs sm:text-sm">Happy Customers</p>
+                  <p className="text-gray-800 font-bold text-xs sm:text-sm text-center">Happy Customers</p>
                 </motion.div>
                 
                 <motion.div
@@ -227,10 +236,13 @@ export default function HomePage() {
                   viewport={{ once: true }}
                   className="flex flex-col justify-center h-full"
                 >
-                  <div className="text-2xl sm:text-4xl md:text-5xl font-bold text-slate-900 mb-1 sm:mb-2">
+                  <div
+                    className="text-3xl sm:text-5xl md:text-6xl font-bold text-slate-900 mb-2 sm:mb-3"
+                    style={{ fontFamily: 'var(--font-dm-serif-display)' }}
+                  >
                     <Counter end={50} />
                   </div>
-                  <p className="text-slate-700 text-xs sm:text-sm">Industries Served</p>
+                  <p className="text-gray-800 font-bold text-xs sm:text-sm text-center">Industries Served Globally</p>
                 </motion.div>
               </div>
             </div>

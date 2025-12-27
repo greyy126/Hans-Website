@@ -92,7 +92,8 @@ export default function ContactPage() {
   const [formData, setFormData] = useState({
     from_name: '',
     from_email: '',
-    phone: '',
+    countryCode: '',
+    phoneNumber: '',
     company: '',
     subject: '',
     message: ''
@@ -213,7 +214,8 @@ const showConfigBanner = process.env.NODE_ENV !== 'production' && !configCheck.v
     setFormData({
       from_name: '',
       from_email: '',
-      phone: '',
+      countryCode: '',
+      phoneNumber: '',
       company: '',
       subject: '',
       message: ''
@@ -229,6 +231,34 @@ const showConfigBanner = process.env.NODE_ENV !== 'production' && !configCheck.v
       [e.target.name]: e.target.value
     });
   };
+
+  const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+
+    if (name === 'countryCode') {
+      const cleaned = value.replace(/[^\d+]/g, '');
+      const normalized = cleaned.startsWith('+')
+        ? '+' + cleaned.slice(1).replace(/\+/g, '').replace(/\D/g, '')
+        : cleaned.replace(/\+/g, '').replace(/\D/g, '').replace(/^/, '+');
+
+      setFormData((prev) => ({
+        ...prev,
+        countryCode: normalized
+      }));
+      return;
+    }
+
+    const digitsOnly = value.replace(/\D/g, '');
+    setFormData((prev) => ({
+      ...prev,
+      [name]: digitsOnly
+    }));
+  };
+
+  const formattedPhone =
+    formData.countryCode && formData.phoneNumber
+      ? `${formData.countryCode} ${formData.phoneNumber}`
+      : formData.phoneNumber || '';
 
   return (
     <div className="pt-24 md:pt-32 pb-16">
@@ -268,6 +298,7 @@ const showConfigBanner = process.env.NODE_ENV !== 'production' && !configCheck.v
           {/* Contact Form */}
           <div>
             <form ref={formRef} onSubmit={handleSubmit} className="space-y-6">
+              <input type="hidden" name="phone" value={formattedPhone} />
               <div>
                 <label htmlFor="from_name" className="block text-sm font-medium text-slate-700 mb-2">
                   Name *
@@ -301,29 +332,46 @@ const showConfigBanner = process.env.NODE_ENV !== 'production' && !configCheck.v
               </div>
 
               <div>
-                <label htmlFor="phone" className="block text-sm font-medium text-slate-700 mb-2">
+                <label htmlFor="phoneNumber" className="block text-sm font-medium text-slate-700 mb-2">
                   Phone *
                 </label>
-                <Input
-                  id="phone"
-                  name="phone"
-                  type="tel"
-                  required
-                  value={formData.phone}
-                  onChange={handleChange}
-                  placeholder="+91 98765 43210"
-                  className="w-full"
-                />
+                <div className="flex flex-col sm:flex-row gap-3">
+                  <Input
+                    id="countryCode"
+                    name="countryCode"
+                    type="tel"
+                    required
+                    value={formData.countryCode}
+                    onChange={handlePhoneChange}
+                    inputMode="tel"
+                    pattern="[+0-9]*"
+                    placeholder="Country code"
+                    className="w-full sm:w-36"
+                  />
+                  <Input
+                    id="phoneNumber"
+                    name="phoneNumber"
+                    type="tel"
+                    required
+                    value={formData.phoneNumber}
+                    onChange={handlePhoneChange}
+                    inputMode="numeric"
+                    pattern="[0-9]*"
+                    placeholder="00000 00000"
+                    className="w-full"
+                  />
+                </div>
               </div>
 
               <div>
                 <label htmlFor="company" className="block text-sm font-medium text-slate-700 mb-2">
-                  Company (Optional)
+                  Company *
                 </label>
                 <Input
                   id="company"
                   name="company"
                   type="text"
+                  required
                   value={formData.company}
                   onChange={handleChange}
                   placeholder="Your company name"

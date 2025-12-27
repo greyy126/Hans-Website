@@ -27,6 +27,8 @@ const categories = [
   'Other Compounds'
 ];
 
+const escapeRegExp = (value: string) => value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+
 const categorizeProduct = (fileName: string): string => {
   const name = fileName.toLowerCase();
   
@@ -34,19 +36,21 @@ const categorizeProduct = (fileName: string): string => {
     return 'Zinc Compounds';
   } else if (name.includes('cupric') || name.includes('cuprous') || name.includes('copper')) {
     return 'Copper Compounds';
-  } else if (name.includes('ferrous') || name.includes('magnesium')) {
+  } else if (name.includes('ferrous') || name.includes('iron')) {
     return 'Ferrous Compounds';
   } else if (name.includes('hansmol')) {
     return 'Dispersing Agent and Wetting Agent';
   } else if (name.includes('sodium')) {
     return 'Sodium Compounds';
+  } else if (name.includes('magnesium') || name.includes('manganese') || name.includes('phthalic')) {
+    return 'Other Compounds';
   } else {
     return 'Other Compounds';
   }
 };
 
 const formatProductName = (fileName: string): string => {
-  return fileName
+  const base = fileName
     .replace('.pdf', '')
     .split(' ')
     .map(word => {
@@ -56,6 +60,27 @@ const formatProductName = (fileName: string): string => {
       return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
     })
     .join(' ');
+
+  const replacements: Record<string, string> = {
+    'Hansmol Bx Paste': 'Hansmol BX Paste',
+    'Hansmol Bx Powder': 'Hansmol BX Powder',
+    'Hansmol Dn (Spl) Powder': 'Hansmol DN (SPL) Powder',
+    'Hansmol Dn Powder': 'Hansmol DN Powder',
+    'Hansmol Fbp1 Powder': 'Hansmol FBP1 Powder',
+    'Hansmol Fz 1 Liquid': 'Hansmol FZ 1 Liquid',
+    'Hansmol Gl Powder': 'Hansmol GL Powder',
+    'Hansmol Gls Powder': 'Hansmol GLS Powder',
+    'Hansmol Nks Powder': 'Hansmol NKS Powder',
+    'Sodium Formaldehyde Bi Sulphite': 'Sodium Formaldehyde BI Sulphate',
+    'Zinc Dust Std 7 Ever Zinc': 'Zinc Dust Std 7',
+    'Zinc Dust Super Extra Ever Zinc': 'Zinc Dust Super Extra',
+    'Zinc Dust Super Fine Ever Zinc': 'Zinc Dust Super Fine',
+    'Magnessium Sulphate Tds': 'Magnesium Sulphate',
+    'Manganese Sulphate Tds': 'Manganese Sulphate Monohydrate',
+    'Phthalic Anhydride Tds': 'Phthalic Anhydride'
+  };
+
+  return replacements[base] ?? base;
 };
 
 const generateProductId = (fileName: string): string => {
@@ -137,12 +162,20 @@ const products: { fileName: string; keywords: string }[] = [
     keywords: 'Magnesium Sulphate, Magnesium Sulfate, Epsom Salt, CAS No. 7487-88-9, MgSO4'
   },
   {
+    fileName: 'Manganese Sulphate TDS.pdf',
+    keywords: 'Manganese Sulphate Monohydrate, MnSO4, Epsom Salt, CAS No. 10034-96-5'
+  },
+  {
     fileName: 'SODIUM ALLYL SULPHONATE.pdf',
     keywords: 'Sodium Allyl Sulphonate, HANSMOL -ALS, C3H5O3NaS, CAS No. 2495-39-8, 2 Propane-Sulphonic Acid, Sodium Salts of Allyl Sulphonic Acid, Sodium Salts, Sodium 1 -Propane-3-Sulphonate, Sodium 2 propane-1-Sulphonate, Sodium Allyl Sulphonate, ALS, SAS, ALS-Sodium Allyl Sulphonate, SAS, Sodium Allyl Sulfonate'
   },
   {
     fileName: 'Sodium Formaldehyde Bi sulphite.pdf',
     keywords: 'Sodium Formaldehyde Bi Sulphite, SFBS, Sodium Hydroxy Methane Sulphonate, NaCH3OSO3, CAS No. 870-72-4'
+  },
+  {
+    fileName: 'Phthalic Anhydride TDS.pdf',
+    keywords: 'Phthalic Anhydride, 1,2-Benzenedicarboxylic Anhydride, C8H4O3, CAS No. 85-44-9'
   },
   {
     fileName: 'Zinc Dust STD 7 Ever Zinc.pdf',
@@ -182,21 +215,23 @@ const applicationsByName: Record<string, string[]> = {
   'Cuprous Oxide - Red': ['Paint', 'Semiconductor', 'Photocell', 'Pigment', 'Pharma'],
   'Ferrous Sulphate - Heptahydrate': ['Pharma', 'Fertilizers', 'Ferrous derivatives', 'Jewellery', 'Reagents'],
   'Hansmol 10 Powder': ['Electroplating', 'Textile'],
-  'Hansmol Bx Paste': ['Textile', 'Dyes'],
-  'Hansmol Bx Powder': ['Textile', 'Dyes'],
-  'Hansmol Dn (SPL) Powder': ['Pesticides', 'Fertilizers'],
-  'Hansmol Dn Powder': ['Pesticides', 'Fertilizers'],
-  'Hansmol Fbp1 Powder': ['Pesticides', 'Fertilizers'],
-  'Hansmol Fz 1 Liquid': ['Textile', 'Fertilizers'],
-  'Hansmol Gl Powder': ['Dyes', 'Textile', 'Fertilizers', 'Pesticides', 'Pigments', 'Construction'],
-  'Hansmol Gls Powder': ['Dyes', 'Textile', 'Fertilizers', 'Pesticides', 'Pigments', 'Construction'],
-  'Hansmol Nks Powder': ['Dyes', 'Textile', 'Fertilizers', 'Pesticides', 'Pigments', 'Construction'],
-  'Magnessium Sulphate Tds': ['Reagents', 'Fertilizers', 'Pharma'],
+  'Hansmol BX Paste': ['Textile', 'Dyes'],
+  'Hansmol BX Powder': ['Textile', 'Dyes'],
+  'Hansmol DN (SPL) Powder': ['Pesticides', 'Fertilizers'],
+  'Hansmol DN Powder': ['Pesticides', 'Fertilizers'],
+  'Hansmol FBP1 Powder': ['Pesticides', 'Fertilizers'],
+  'Hansmol FZ 1 Liquid': ['Textile', 'Fertilizers'],
+  'Hansmol GL Powder': ['Dyes', 'Textile', 'Fertilizers', 'Pesticides', 'Pigments', 'Construction'],
+  'Hansmol GLS Powder': ['Dyes', 'Textile', 'Fertilizers', 'Pesticides', 'Pigments', 'Construction'],
+  'Hansmol NKS Powder': ['Dyes', 'Textile', 'Fertilizers', 'Pesticides', 'Pigments', 'Construction'],
+  'Magnesium Sulphate': ['Reagents', 'Fertilizers', 'Pharma'],
+  'Manganese Sulphate Monohydrate': ['Dyes', 'Fungicides', 'Medicines and ceramics', 'Nutrient and dietary supplement', 'Ore flotation', 'Laboratory reagent'],
   'Sodium Allyl Sulphonate': ['Electroplating'],
-  'Sodium Formaldehyde Bi Sulphite': ['Electroplating', 'Water treatment'],
-  'Zinc Dust Std 7 Ever Zinc': ['Paint', 'Pharma', 'Mechanical Plating'],
-  'Zinc Dust Super Extra Ever Zinc': ['Paint', 'Pharma', 'Mechanical Plating'],
-  'Zinc Dust Super Fine Ever Zinc': ['Paint', 'Pharma', 'Mechanical Plating'],
+  'Sodium Formaldehyde BI Sulphate': ['Electroplating', 'Water treatment'],
+  'Phthalic Anhydride': ['Resin', 'Pesticides', 'Plasticizers', 'Unsaturated Polyester', 'Alkyd Resins', 'Dyes and Pigments', 'Pharma', 'Flame Retardants'],
+  'Zinc Dust Std 7': ['Paint', 'Pharma', 'Mechanical Plating'],
+  'Zinc Dust Super Extra': ['Paint', 'Pharma', 'Mechanical Plating'],
+  'Zinc Dust Super Fine': ['Paint', 'Pharma', 'Mechanical Plating'],
   'Zinc Oxide - Goldseal': ['Paint', 'Pharma', 'Fertilizers', 'Rubber', 'Zinc Salts'],
   'Zinc Oxide - Whiteseal': ['Paint', 'Pharma', 'Fertilizers', 'Rubber', 'Zinc Salts'],
   'Zinc Phospsphate': ['Paint', 'Reagents'],
@@ -221,13 +256,48 @@ export default function ProductsPageClient() {
   const [selectedCategory, setSelectedCategory] = useState('All');
 
   const filteredProducts = useMemo(() => {
-    return productsWithApplications.filter(product => {
-      const searchLower = searchTerm.toLowerCase();
-      const matchesSearch = product.name.toLowerCase().includes(searchLower) || 
-                           product.keywords.toLowerCase().includes(searchLower);
-      const matchesCategory = selectedCategory === 'All' || product.category === selectedCategory;
-      return matchesSearch && matchesCategory;
-    });
+    const searchLower = searchTerm.trim().toLowerCase();
+
+    const scored = productsWithApplications
+      .map((product, index) => {
+        const nameLower = product.name.toLowerCase();
+        const keywordsLower = product.keywords.toLowerCase();
+
+        const startsWith = searchLower && nameLower.startsWith(searchLower);
+        const wordMatch =
+          searchLower &&
+          new RegExp(`\\b${escapeRegExp(searchLower)}`).test(nameLower);
+        const containsName = searchLower && nameLower.includes(searchLower);
+        const containsKeywords = searchLower && keywordsLower.includes(searchLower);
+
+        const matchesSearch =
+          !searchLower || containsName || containsKeywords;
+        const matchesCategory =
+          selectedCategory === 'All' || product.category === selectedCategory;
+
+        if (!matchesSearch || !matchesCategory) {
+          return null;
+        }
+
+        const score = startsWith
+          ? 3
+          : wordMatch
+            ? 2
+            : containsName
+              ? 1
+              : containsKeywords
+                ? 0
+                : -1;
+
+        return { product, score, index };
+      })
+      .filter((item): item is { product: typeof productsWithApplications[number]; score: number; index: number } => item !== null)
+      .sort((a, b) => {
+        if (b.score !== a.score) return b.score - a.score;
+        return a.index - b.index; // stable ordering
+      });
+
+    return scored.map((entry) => entry.product);
   }, [searchTerm, selectedCategory]);
 
   const handleSearchChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {

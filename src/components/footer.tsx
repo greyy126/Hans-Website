@@ -12,24 +12,33 @@ export function Footer() {
     <footer className="bg-white text-slate-600 py-12 px-6 border-t border-slate-200">
       <div className="container mx-auto max-w-screen-xl">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {/* Column 1: Brand */}
-          <div className="space-y-3">
-            <div className="flex items-center space-x-3">
-              <img
-                src="/Hans_logo-update.png"
-                alt="Hans Chemicals Pvt. Ltd"
-                width={80}
-                height={80}
-                className="w-20 h-auto"
-              />
-              <div>
-                <span className="text-slate-900 font-semibold text-lg">Hans Chemicals Pvt. Ltd</span>
-                <p className="text-slate-500 text-sm mt-1">
-                  Reliable Chemical Supply Since 1987
-                </p>
-              </div>
-            </div>
-          </div>
+          
+{/* Column 1: Brand */}
+<div className="space-y-3">
+  <div className="flex flex-col sm:flex-row sm:items-end gap-3">
+    <img
+      src="/Hans_logo-update.png"
+      alt="Hans Chemicals Pvt. Ltd"
+      width={96}
+      height={96}
+      className="w-24 h-auto"
+    />
+
+    <div className="flex flex-col justify-end space-y-1">
+      <span className="text-slate-900 font-semibold text-lg">
+        Hans Chemicals Pvt. Ltd
+      </span>
+
+      <p className="text-slate-500 text-sm leading-snug">
+        Reliable Chemical Supply Since 1987
+      </p>
+
+      <p className="text-black text-sm leading-snug">
+        GST No. 27AABCH5433N1ZC
+      </p>
+    </div>
+  </div>
+</div>
 
           {/* Column 2: Links */}
           <div>

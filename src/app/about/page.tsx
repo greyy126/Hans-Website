@@ -28,7 +28,7 @@ const milestones = [
     description: 'Launched sustainable sourcing and eco-friendly packaging initiatives.'
   },
   {
-    year: '2025',
+    year: '2026',
     title: 'Present',
     description: 'Continuing to serve industries with reliable chemical solutions and expanding our reach.'
   }
