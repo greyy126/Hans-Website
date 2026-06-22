@@ -27,8 +27,6 @@ const categories = [
   'Other Compounds'
 ];
 
-const escapeRegExp = (value: string) => value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-
 const categorizeProduct = (fileName: string): string => {
   const name = fileName.toLowerCase();
   
@@ -256,48 +254,13 @@ export default function ProductsPageClient() {
   const [selectedCategory, setSelectedCategory] = useState('All');
 
   const filteredProducts = useMemo(() => {
-    const searchLower = searchTerm.trim().toLowerCase();
-
-    const scored = productsWithApplications
-      .map((product, index) => {
-        const nameLower = product.name.toLowerCase();
-        const keywordsLower = product.keywords.toLowerCase();
-
-        const startsWith = searchLower && nameLower.startsWith(searchLower);
-        const wordMatch =
-          searchLower &&
-          new RegExp(`\\b${escapeRegExp(searchLower)}`).test(nameLower);
-        const containsName = searchLower && nameLower.includes(searchLower);
-        const containsKeywords = searchLower && keywordsLower.includes(searchLower);
-
-        const matchesSearch =
-          !searchLower || containsName || containsKeywords;
-        const matchesCategory =
-          selectedCategory === 'All' || product.category === selectedCategory;
-
-        if (!matchesSearch || !matchesCategory) {
-          return null;
-        }
-
-        const score = startsWith
-          ? 3
-          : wordMatch
-            ? 2
-            : containsName
-              ? 1
-              : containsKeywords
-                ? 0
-                : -1;
-
-        return { product, score, index };
-      })
-      .filter((item): item is { product: typeof productsWithApplications[number]; score: number; index: number } => item !== null)
-      .sort((a, b) => {
-        if (b.score !== a.score) return b.score - a.score;
-        return a.index - b.index; // stable ordering
-      });
-
-    return scored.map((entry) => entry.product);
+    return productsWithApplications.filter(product => {
+      const searchLower = searchTerm.toLowerCase();
+      const matchesSearch = product.name.toLowerCase().includes(searchLower) || 
+                           product.keywords.toLowerCase().includes(searchLower);
+      const matchesCategory = selectedCategory === 'All' || product.category === selectedCategory;
+      return matchesSearch && matchesCategory;
+    });
   }, [searchTerm, selectedCategory]);
 
   const handleSearchChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
@@ -410,7 +373,7 @@ export default function ProductsPageClient() {
           {filteredProducts.map((product, index) => (
             <motion.div
               key={product.id}
-              initial={false}
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               whileHover={{ scale: 1.02 }}
               transition={{ 

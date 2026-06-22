@@ -131,4 +131,18 @@ The design system uses custom colors defined in `src/app/globals.css`:
 - **Headings**: Playfair Display (Google Fonts)
 
 ### Adding New Products
-Edit `src/data/products.ts` to add new products to the catalog.
+Edit `src/app/products/ProductsPageClient.tsx` to add new products to the catalog.
+
+## Deployment
+
+This project can be deployed on any platform that supports Next.js:
+
+- **Vercel** (recommended)
+- **Netlify**
+- **AWS Amplify**
+- **Railway**
+- **DigitalOcean App Platform**
+
+## License
+
+© 2024 Hans Chemicals Pvt. Ltd Pvt. LTD. All rights reserved.

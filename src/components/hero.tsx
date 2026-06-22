@@ -4,18 +4,8 @@ import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { ArrowRight, ShieldCheck, Truck, Smile } from 'lucide-react';
 import { motion } from 'framer-motion';
-import { useEffect, useState } from 'react';
 
 export function Hero() {
-  const [mounted, setMounted] = useState(false);
-
-  // Wait for client mount to avoid any server/client markup mismatch
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  if (!mounted) return null;
-
   return (
     <section 
       className="relative overflow-hidden min-h-[78vh] flex flex-col justify-center bg-cover bg-center bg-no-repeat pt-12 pb-12 sm:pt-24 sm:pb-14 md:py-20"
@@ -93,12 +83,12 @@ export function Hero() {
               
               <motion.div 
                 className="flex flex-row flex-wrap justify-center gap-3 sm:gap-4 mt-2 sm:mt-5 px-2"
-                initial={{ opacity: 0, y: 20 }}
+                initial={false}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.7 }}
               >
                 <motion.div
-                  initial={{ opacity: 0, scale: 0.9, y: 20 }}
+                  initial={false}
                   animate={{ opacity: 1, scale: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: 0.8, ease: "easeOut" }}
                   whileHover={{ scale: 1.05 }}
@@ -114,7 +104,7 @@ export function Hero() {
                 </motion.div>
                 
                 <motion.div
-                  initial={{ opacity: 0, scale: 0.9, y: 20 }}
+                  initial={false}
                   animate={{ opacity: 1, scale: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: 0.9, ease: "easeOut" }}
                   whileHover={{ scale: 1.05 }}

@@ -97,7 +97,7 @@ function DirectorCard({
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 20 }}
+      initial={false}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, delay }}
       viewport={{ once: true }}
@@ -158,12 +158,6 @@ function Counter({ end, duration = 2000 }: { end: number; duration?: number }) {
 }
 
 export default function HomePage() {
-  const [pageMounted, setPageMounted] = useState(false);
-
-  useEffect(() => {
-    setPageMounted(true);
-  }, []);
-
   return (
     <div>
       {/* Skip to content link */}
@@ -174,15 +168,13 @@ export default function HomePage() {
       {/* Hero Section */}
       <Hero />
 
-      {/* Render non-hero content only after hydration to prevent flashes */}
-      {pageMounted && (
-        <>
+      <>
           {/* Metrics Section */}
           <section id="main-content" className="py-6 md:py-10 bg-gray-50">
             <div className="container mx-auto max-w-screen-xl px-4 md:px-6">
               <div className="grid grid-cols-4 gap-4 sm:gap-6 md:gap-10 text-center items-center">
                 <motion.div
-                  initial={{ opacity: 0, y: 20 }}
+                  initial={false}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: 0.1 }}
                   viewport={{ once: true }}
@@ -198,7 +190,7 @@ export default function HomePage() {
                 </motion.div>
                 
                 <motion.div
-                  initial={{ opacity: 0, y: 20 }}
+                  initial={false}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: 0.2 }}
                   viewport={{ once: true }}
@@ -214,7 +206,7 @@ export default function HomePage() {
                 </motion.div>
                 
                 <motion.div
-                  initial={{ opacity: 0, y: 20 }}
+                  initial={false}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: 0.3 }}
                   viewport={{ once: true }}
@@ -230,7 +222,7 @@ export default function HomePage() {
                 </motion.div>
                 
                 <motion.div
-                  initial={{ opacity: 0, y: 20 }}
+                  initial={false}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: 0.4 }}
                   viewport={{ once: true }}
@@ -294,7 +286,7 @@ export default function HomePage() {
                 {workflowCards.map((card, index) => (
                   <motion.div
                     key={index}
-                    initial={{ opacity: 0, y: 20 }}
+                    initial={false}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6, delay: index * 0.2 }}
                     viewport={{ once: true }}
@@ -330,7 +322,7 @@ export default function HomePage() {
                 {industries.map((industry, index) => (
                   <motion.div
                     key={index}
-                    initial={{ opacity: 0, y: 20 }}
+                    initial={false}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6, delay: index * 0.1 }}
                     viewport={{ once: true }}
@@ -351,8 +343,7 @@ export default function HomePage() {
               </div>
             </div>
           </section>
-        </>
-      )}
+      </>
 
     </div>
   );
