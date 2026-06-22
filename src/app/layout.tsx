@@ -3,6 +3,7 @@ import { Geist, Geist_Mono, DM_Serif_Display } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
+import { siteUrl } from "@/lib/products";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -22,8 +23,19 @@ const dmSerifDisplay = DM_Serif_Display({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
   title: "Hans Chemicals Pvt. Ltd",
   description: "Quality-checked sourcing and on-time delivery for electroplating, metal treatment, feed, and water treatment chemicals.",
+  alternates: {
+    canonical: siteUrl,
+  },
+  openGraph: {
+    title: "Hans Chemicals Pvt. Ltd",
+    description: "Quality-checked sourcing and on-time delivery for electroplating, metal treatment, feed, and water treatment chemicals.",
+    url: siteUrl,
+    siteName: "Hans Chemicals Pvt. Ltd",
+    type: "website",
+  },
   icons: {
     icon: [
       { url: "/favicon.ico", sizes: "any" },

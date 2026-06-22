@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import ProductsPageClient from './ProductsPageClient';
+import { products, siteUrl } from '@/lib/products';
 
 export const metadata: Metadata = {
   title: 'Products | Hans Chemicals Pvt. Ltd',
@@ -10,10 +11,34 @@ export const metadata: Metadata = {
     follow: true,
   },
   alternates: {
-    canonical: 'https://hanschemicals.com/products',
+    canonical: `${siteUrl}/products`,
   },
 };
 
 export default function ProductsPage() {
-  return <ProductsPageClient />;
+  const collectionJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    name: 'Chemical Products | Hans Chemicals Pvt. Ltd',
+    url: `${siteUrl}/products`,
+    mainEntity: {
+      '@type': 'ItemList',
+      itemListElement: products.map((product, index) => ({
+        '@type': 'ListItem',
+        position: index + 1,
+        url: `${siteUrl}/products/${product.slug}`,
+        name: product.name
+      }))
+    }
+  };
+
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionJsonLd) }}
+      />
+      <ProductsPageClient />
+    </>
+  );
 }
