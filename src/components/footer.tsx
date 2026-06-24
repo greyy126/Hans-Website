@@ -33,9 +33,6 @@ export function Footer() {
         Reliable Chemical Supply Since 1987
       </p>
 
-      <p className="text-black text-sm leading-snug">
-        GST No. 27AABCH5433N1ZC
-      </p>
     </div>
   </div>
 </div>
